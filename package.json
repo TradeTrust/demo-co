@@ -1,0 +1,33 @@
+{
+  "name": "demo-co",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "start": "./node_modules/.bin/owc-dev-server --app-index index.html --open --watch --port 8081",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TradeTrust/demo-co.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TradeTrust/demo-co/issues"
+  },
+  "homepage": "https://github.com/TradeTrust/demo-co#readme",
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "lit-element": "^2.1.0",
+    "penpal": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "owc-dev-server": "^0.4.3",
+    "rollup": "^1.12.4"
+  }
+}
