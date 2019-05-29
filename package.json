@@ -6,7 +6,9 @@
   "scripts": {
     "build": "rollup -c",
     "start": "./node_modules/.bin/owc-dev-server --app-index index.html --open --watch --port 8081",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .js --max-warnings 0",
+    "lint:fix": "eslint . --ext .js --fix"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,8 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.13.0",
     "owc-dev-server": "^0.4.3",
     "rollup": "^1.12.4"
   }

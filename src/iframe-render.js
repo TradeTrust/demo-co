@@ -40,7 +40,7 @@ class IframeRender extends LitElement {
         super();
     }
 
-    firstUpdated(_) {
+    firstUpdated() {
         this._iframe = this.shadowRoot.querySelector('iframe');
         let iframe = this._iframe;
         let updateHeight = this.updateHeight.bind(this);
@@ -54,16 +54,16 @@ class IframeRender extends LitElement {
         });
     }
 
-    selectTemplateTab = function (i) {
+    selectTemplateTab(i) {
         window.connection.promise.then(frame => frame.selectTemplateTab(i));
-    };
+    }
 
-    updateHeight = function (h) {
+    updateHeight (h) {
         // Adding 60 to account for extra height on firefox
         this._iframe.height = h + 60;
-    };
+    }
 
-    updateTemplates = function (templates) {
+    updateTemplates (templates) {
         if (!templates) return;
         const templateSelector = document.getElementById("template-selectors");
         templateSelector.innerHTML = "";
@@ -71,14 +71,14 @@ class IframeRender extends LitElement {
             const btn = document.createElement("button");
             btn.innerHTML = t.label;
             btn.id = `selector-${t.id}`;
-            btn.onclick = () => selectTemplateTab(i);
+            btn.onclick = () => this.selectTemplateTab(i);
             templateSelector.appendChild(btn);
         });
-    };
+    }
 
-    renderCertificate = function (cert) {
+    renderCertificate (cert) {
         window.connection.promise.then(frame => frame.renderCertificate(cert));
-    };
+    }
 
     render() {
         return html`
