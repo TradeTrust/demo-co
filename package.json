@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c",
-    "start": "./node_modules/.bin/owc-dev-server --app-index index.html --open --watch --port 8081",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js --max-warnings 0",
     "lint:fix": "eslint . --ext .js --fix"
@@ -21,20 +21,40 @@
   },
   "homepage": "https://github.com/TradeTrust/demo-co#readme",
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "^2.2.10",
-    "lit-element": "^2.1.0",
-    "penpal": "^4.0.0"
+    "@tradetrust/tradetrust-certificate": "file:../tradetrust-certificate/tradetrust-tradetrust-certificate-1.0.0.tgz",
+    "penpal": "^4.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^3.0.1",
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
-    "owc-dev-server": "^0.4.3",
     "prettier": "^1.17.1",
+    "redux-devtools-extension": "^2.13.8",
     "rollup": "^1.12.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
