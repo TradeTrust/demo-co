@@ -8,9 +8,7 @@ import {
 import { updateCertificate } from "../reducers/certificate";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
+
   handleCertificateChange(json) {
     const validated = validateSchema(json);
     if (!validated) {
@@ -36,7 +34,6 @@ class Home extends Component {
       try {
         const json = JSON.parse(e.target.result);
         this.handleCertificateChange(json);
-        console.log("jaons", json);
       } catch (e) {
         console.log("error");
       }
@@ -69,7 +66,7 @@ export default connect(
 
 Home.propTypes = {
   updateCertificate: PropTypes.func,
-  history: {
+  history: PropTypes.shape({
     push: PropTypes.func
-  }
+  })
 };
