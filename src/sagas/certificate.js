@@ -1,5 +1,5 @@
-import { put, takeEvery } from "redux-saga/effects";
-import { types } from "../reducers/certificate";
+// import { put, takeEvery } from "redux-saga/effects";
+// import { types } from "../reducers/certificate";
 
 // export function* updateCertificate({ payload }) {
 //   yield put({
@@ -7,8 +7,6 @@ import { types } from "../reducers/certificate";
 //     payload
 //   });
 // }
-
-
 
 // export default [
 //   takeEvery(types.UPDATE_CERTIFICATE, updateCertificate)

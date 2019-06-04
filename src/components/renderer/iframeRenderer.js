@@ -1,15 +1,16 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {getCertificate} from "../../reducers/certificate";
-import {get} from "lodash";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCertificate } from "../../reducers/certificate";
+import { get } from "lodash";
 import { certificateData } from "@tradetrust/tradetrust-certificate";
 
 class IframeRenderer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        template : get(certificateData(props.document), "$template")
-    }
+      template: get(certificateData(props.document), "$template")
+    };
   }
 
   componentDidMount() {
@@ -23,14 +24,14 @@ class IframeRenderer extends Component {
         updateTemplates
       }
     });
-    this.renderCertificate(this.props.document)
+    this.renderCertificate(this.props.document);
   }
 
   selectTemplateTab(i) {
     window.connection.promise.then(frame => frame.selectTemplateTab(i));
   }
 
-  updateHeight(h) {
+  updateHeight() {
     // Adding 60 to account for extra height on firefox
     // this._iframe.height = h + 60;
   }
@@ -53,25 +54,28 @@ class IframeRenderer extends Component {
   }
 
   render() {
-    const {document} = this.props;
-    const {template} = this.state;
-    console.log(template)
-    return (<>
-      <div id="template-selectors"></div>
+    const { template } = this.state;
+    return (
+      <>
+        <div id="template-selectors" />
 
-      <iframe
-        title="Rendered Certificate"
-        id="frameless-iframe"
-        src={template.url}
-        style={{width: "100%", border: 0, height: "100%"}}
-      ></iframe>
-      </>)
-
+        <iframe
+          title="Rendered Certificate"
+          id="frameless-iframe"
+          src={template.url}
+          style={{ width: "100%", border: 0, height: "100%" }}
+        />
+      </>
+    );
   }
 }
 
 const mapStateToProps = store => ({
-    document: getCertificate(store),
-}); 
+  document: getCertificate(store)
+});
 
 export default connect(mapStateToProps)(IframeRenderer);
+
+IframeRenderer.propTypes = {
+  document: PropTypes.object
+};

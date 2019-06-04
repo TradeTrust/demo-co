@@ -12,11 +12,11 @@ export const types = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.UPDATE_CERTIFICATE:
-    return {
-      ...initialState,
-      cert: action.payload,
-      certModified: action.payload
-    };
+      return {
+        ...initialState,
+        cert: action.payload,
+        certModified: action.payload
+      };
     default:
       return state;
   }
@@ -29,7 +29,6 @@ export function updateCertificate(payload) {
     payload
   };
 }
-
 
 export function getCertificate(store) {
   return store.certificate.certModified;
