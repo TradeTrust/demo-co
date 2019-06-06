@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import connectToChild from 'penpal/lib/connectToChild';
+
 import { getCertificate } from "../../reducers/certificate";
 import { get } from "lodash";
 import { certificateData } from "@tradetrust/tradetrust-certificate";
@@ -9,15 +11,16 @@ class IframeRenderer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      template: get(certificateData(props.document), "$template")
+      template: get(certificateData(props.document), "$template"),
+      connection: null
     };
   }
 
   componentDidMount() {
     let iframe = document.querySelector("#frameless-iframe");
     let updateHeight = this.updateHeight.bind(this);
-    let updateTemplates = this.updateHeight.bind(this);
-    window.connection = window.Penpal.connectToChild({
+    let updateTemplates = this.updateTemplates.bind(this);
+    this.state.connection = connectToChild({
       iframe,
       methods: {
         updateHeight,
@@ -28,10 +31,10 @@ class IframeRenderer extends Component {
   }
 
   selectTemplateTab(i) {
-    window.connection.promise.then(frame => frame.selectTemplateTab(i));
+    this.state.connection.promise.then(frame => frame.selectTemplateTab(i));
   }
 
-  updateHeight() {
+  updateHeight(h) {
     // Adding 60 to account for extra height on firefox
     // this._iframe.height = h + 60;
   }
@@ -50,7 +53,7 @@ class IframeRenderer extends Component {
   }
 
   renderCertificate(cert) {
-    window.connection.promise.then(frame => frame.renderCertificate(cert));
+    this.state.connection.promise.then(frame => frame.renderCertificate(cert));
   }
 
   render() {
