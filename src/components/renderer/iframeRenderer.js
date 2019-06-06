@@ -27,7 +27,7 @@ class IframeRenderer extends Component {
         updateTemplates
       }
     });
-    this.renderCertificate(this.props.document);
+    this.renderCertificate(certificateData(this.props.document));
   }
 
   selectTemplateTab(i) {
@@ -52,8 +52,8 @@ class IframeRenderer extends Component {
     });
   }
 
-  renderCertificate(cert) {
-    this.connection.promise.then(frame => frame.renderCertificate(cert));
+  renderCertificate(doc) {
+    this.connection.promise.then(frame => frame.renderCertificate(doc));
   }
 
   render() {
