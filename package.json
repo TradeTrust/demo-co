@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/TradeTrust/demo-co/issues"
   },
-  "homepage": "https://github.com/TradeTrust/demo-co#readme",
+  "homepage": ".",
   "dependencies": {
     "@govtechsg/tradetrust-schema": "^1.0.5",
     "penpal": "^4.0.0",
