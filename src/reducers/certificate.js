@@ -1,6 +1,10 @@
+import { get } from "lodash";
+import { certificateData } from "@tradetrust/tradetrust-certificate";
+
 export const initialState = {
   cert: null,
-  certModified: null
+  certModified: null,
+  template: null
 };
 
 // Actions
@@ -15,7 +19,8 @@ export default function reducer(state = initialState, action) {
       return {
         ...initialState,
         cert: action.payload,
-        certModified: action.payload
+        certModified: action.payload,
+        template: get(certificateData(action.payload), "$template")
       };
     default:
       return state;
@@ -32,4 +37,8 @@ export function updateCertificate(payload) {
 
 export function getCertificate(store) {
   return store.certificate.certModified;
+}
+
+export function getTemplate(store) {
+  return store.certificate.template;
 }

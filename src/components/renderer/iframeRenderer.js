@@ -3,17 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import connectToChild from 'penpal/lib/connectToChild';
 
-import { getCertificate } from "../../reducers/certificate";
-import { get } from "lodash";
+import { getCertificate, getTemplate } from "../../reducers/certificate";
 import { certificateData } from "@tradetrust/tradetrust-certificate";
 
 class IframeRenderer extends Component {
   constructor(props) {
     super(props);
     this.connection = null;
-    this.state = {
-      template: get(certificateData(props.document), "$template")
-    };
   }
 
   componentDidMount() {
@@ -57,7 +53,8 @@ class IframeRenderer extends Component {
   }
 
   render() {
-    const { template } = this.state;
+    const { template } = this.props;
+    if(!template) return null
     return (
       <>
         <div id="template-selectors" />
@@ -74,11 +71,13 @@ class IframeRenderer extends Component {
 }
 
 const mapStateToProps = store => ({
-  document: getCertificate(store)
+  document: getCertificate(store),
+  template: getTemplate(store)
 });
 
 export default connect(mapStateToProps)(IframeRenderer);
 
 IframeRenderer.propTypes = {
-  document: PropTypes.object
+  document: PropTypes.object,
+  template: PropTypes.object
 };
