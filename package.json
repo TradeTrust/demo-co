@@ -43,8 +43,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
     "prettier": "^1.17.1",
-    "redux-devtools-extension": "^2.13.8",
-    "rollup": "^1.12.4"
+    "redux-devtools-extension": "^2.13.8"
   },
   "browserslist": {
     "production": [
