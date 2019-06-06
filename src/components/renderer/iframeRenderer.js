@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import connectToChild from 'penpal/lib/connectToChild';
 
 import { getCertificate, getTemplate } from "../../reducers/certificate";
-import { certificateData } from "@tradetrust/tradetrust-certificate";
+import { certificateData } from "@govtechsg/tradetrust-schema";
 
 class IframeRenderer extends Component {
   constructor(props) {

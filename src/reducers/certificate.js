@@ -1,5 +1,5 @@
 import { get } from "lodash";
-import { certificateData } from "@tradetrust/tradetrust-certificate";
+import { certificateData } from "@govtechsg/tradetrust-schema";
 
 export const initialState = {
   doc: null,

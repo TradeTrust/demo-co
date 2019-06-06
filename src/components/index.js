@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {
   verifySignature,
   validateSchema
-} from "@tradetrust/tradetrust-certificate";
+} from "@govtechsg/tradetrust-schema";
 import { updateCertificate } from "../reducers/certificate";
 
 class Home extends Component {

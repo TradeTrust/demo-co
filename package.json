@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/TradeTrust/demo-co#readme",
   "dependencies": {
-    "@tradetrust/tradetrust-certificate": "file:../tradetrust-certificate/tradetrust-tradetrust-certificate-1.0.0.tgz",
+    "@govtechsg/tradetrust-schema": "^1.0.5",
     "penpal": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
