@@ -13,7 +13,7 @@ class IframeRenderer extends Component {
   }
 
   componentDidMount() {
-    let iframe = document.querySelector("#frameless-iframe");
+    let iframe = this._iframe;
     let updateHeight = this.updateHeight.bind(this);
     let updateTemplates = this.updateTemplates.bind(this);
     this.connection = connectToChild({
@@ -23,6 +23,7 @@ class IframeRenderer extends Component {
         updateTemplates
       }
     });
+    if(!this.props.document) {return this.props.history.push('/'); }
     this.renderCertificate(certificateData(this.props.document));
   }
 
@@ -54,7 +55,6 @@ class IframeRenderer extends Component {
 
   render() {
     const { template } = this.props;
-    if(!template) return null
     return (
       <>
         <div id="template-selectors" />
@@ -62,7 +62,8 @@ class IframeRenderer extends Component {
         <iframe
           title="Rendered Certificate"
           id="frameless-iframe"
-          src={template.url}
+          ref={iframe => this._iframe = iframe}
+          src={template ? template.url : ''}
           style={{ width: "100%", border: 0, height: "100%" }}
         />
       </>
