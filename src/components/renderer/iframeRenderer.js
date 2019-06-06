@@ -10,9 +10,9 @@ import { certificateData } from "@tradetrust/tradetrust-certificate";
 class IframeRenderer extends Component {
   constructor(props) {
     super(props);
+    this.connection = null;
     this.state = {
-      template: get(certificateData(props.document), "$template"),
-      connection: null
+      template: get(certificateData(props.document), "$template")
     };
   }
 
@@ -20,7 +20,7 @@ class IframeRenderer extends Component {
     let iframe = document.querySelector("#frameless-iframe");
     let updateHeight = this.updateHeight.bind(this);
     let updateTemplates = this.updateTemplates.bind(this);
-    this.state.connection = connectToChild({
+    this.connection = connectToChild({
       iframe,
       methods: {
         updateHeight,
@@ -31,7 +31,7 @@ class IframeRenderer extends Component {
   }
 
   selectTemplateTab(i) {
-    this.state.connection.promise.then(frame => frame.selectTemplateTab(i));
+    this.connection.promise.then(frame => frame.selectTemplateTab(i));
   }
 
   updateHeight(h) {
@@ -53,7 +53,7 @@ class IframeRenderer extends Component {
   }
 
   renderCertificate(cert) {
-    this.state.connection.promise.then(frame => frame.renderCertificate(cert));
+    this.connection.promise.then(frame => frame.renderCertificate(cert));
   }
 
   render() {
