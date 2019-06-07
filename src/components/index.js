@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  verifySignature,
-  validateSchema
-} from "@govtechsg/tradetrust-schema";
+import { verifySignature, validateSchema } from "@govtechsg/tradetrust-schema";
 import { updateDocument } from "../reducers/document";
 
 class Home extends Component {
-
   handleCertificateChange(json) {
     const validated = validateSchema(json);
     if (!validated) {

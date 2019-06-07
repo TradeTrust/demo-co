@@ -1,11 +1,11 @@
 {
-  "name": "demo-co",
+  "name": "tradetrust-website",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && react-snapshot",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js --max-warnings 0",
     "lint:fix": "eslint . --ext .js --fix"
@@ -44,6 +44,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
     "prettier": "^1.17.1",
+    "react-snapshot": "^1.3.0",
     "redux-devtools-extension": "^2.13.8"
   },
   "browserslist": {
