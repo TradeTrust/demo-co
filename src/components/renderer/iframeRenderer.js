@@ -39,16 +39,7 @@ class IframeRenderer extends Component {
 
   updateTemplates(templates) {
     if (!templates) return;
-    const templateSelector = document.getElementById("template-selectors");
-    templateSelector.innerHTML = "";
-    templates.forEach((t, i) => {
-      const btn = document.createElement("button");
-      btn.innerHTML = t.label;
-      btn.id = `selector-${t.id}`;
-      btn.onclick = () => this.selectTemplateTab(i);
-      templateSelector.appendChild(btn);
-    });
-    //this.props.registerTemplates(templates)
+    this.props.registerTemplates(templates)
   }
 
   renderCertificate(doc) {
@@ -56,11 +47,9 @@ class IframeRenderer extends Component {
   }
 
   render() {
-    const { renderType, template } = this.props;
-    console.log("templates", template)
+    const { renderType } = this.props;
     return (
       <>
-        <div id="template-selectors" />
         <MultiDocRenderer selectTemplateTab={this.selectTemplateTab.bind(this)} whitelist={[]}/>
         <iframe
           title="Rendered Certificate"
@@ -76,8 +65,7 @@ class IframeRenderer extends Component {
 
 const mapStateToProps = store => ({
   document: getDocument(store),
-  renderType: getRenderType(store),
-  template: getTemplates(store)
+  renderType: getRenderType(store)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -88,5 +76,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(IframeRenderer);
 
 IframeRenderer.propTypes = {
   document: PropTypes.object,
-  template: PropTypes.object
+  renderType: PropTypes.object
 };
