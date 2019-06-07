@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import connectToChild from 'penpal/lib/connectToChild';
 
-import { getDocument, getRenderType, registerTemplates as registerTemplatesAction } from "../../reducers/document";
-import { certificateData } from "@tradetrust/tradetrust-certificate";
+import { getDocument, getRenderType, getTemplates, registerTemplates as registerTemplatesAction } from "../../reducers/document";
+import { certificateData } from "@govtechsg/tradetrust-schema";
 import MultiDocRenderer from "./multiDocRenderer";
+
 class IframeRenderer extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,6 @@ class IframeRenderer extends Component {
   }
 
   componentDidMount() {
-    console.log("component did mount")
     let iframe = this._iframe;
     let updateHeight = this.updateHeight.bind(this);
     let updateTemplates = this.updateTemplates.bind(this);
@@ -56,7 +56,8 @@ class IframeRenderer extends Component {
   }
 
   render() {
-    const { renderType, document } = this.props;
+    const { renderType, template } = this.props;
+    console.log("templates", template)
     return (
       <>
         <div id="template-selectors" />
@@ -75,7 +76,8 @@ class IframeRenderer extends Component {
 
 const mapStateToProps = store => ({
   document: getDocument(store),
-  renderType: getRenderType(store)
+  renderType: getRenderType(store),
+  template: getTemplates(store)
 });
 
 const mapDispatchToProps = dispatch => ({
