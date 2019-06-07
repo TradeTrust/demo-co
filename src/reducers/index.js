@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import certificate from "./certificate";
+import document from "./document";
 
 export default combineReducers({
-  certificate
+  document
 });
