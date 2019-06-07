@@ -5,7 +5,7 @@ import {
   verifySignature,
   validateSchema
 } from "@govtechsg/tradetrust-schema";
-import { updateCertificate } from "../reducers/certificate";
+import { updateDocument } from "../reducers/document";
 
 class Home extends Component {
 
@@ -18,7 +18,7 @@ class Home extends Component {
     }
     const verified = verifySignature(json);
     if (verified) {
-      this.props.updateCertificate(json);
+      this.props.updateDocument(json);
       this.props.history.push("/renderer");
     }
   }
@@ -56,7 +56,7 @@ class Home extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateCertificate: payload => dispatch(updateCertificate(payload))
+  updateDocument: payload => dispatch(updateDocument(payload))
 });
 
 export default connect(
@@ -65,7 +65,7 @@ export default connect(
 )(Home);
 
 Home.propTypes = {
-  updateCertificate: PropTypes.func,
+  updateDocument: PropTypes.func,
   history: PropTypes.shape({
     push: PropTypes.func
   })

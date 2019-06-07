@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import connectToChild from 'penpal/lib/connectToChild';
 
-import { getCertificate, getTemplate } from "../../reducers/certificate";
+import { getDocument, getRenderType, getTemplates, registerTemplates as registerTemplatesAction } from "../../reducers/document";
 import { certificateData } from "@govtechsg/tradetrust-schema";
+import MultiDocRenderer from "./multiDocRenderer";
 
 class IframeRenderer extends Component {
   constructor(props) {
@@ -38,15 +39,7 @@ class IframeRenderer extends Component {
 
   updateTemplates(templates) {
     if (!templates) return;
-    const templateSelector = document.getElementById("template-selectors");
-    templateSelector.innerHTML = "";
-    templates.forEach((t, i) => {
-      const btn = document.createElement("button");
-      btn.innerHTML = t.label;
-      btn.id = `selector-${t.id}`;
-      btn.onclick = () => this.selectTemplateTab(i);
-      templateSelector.appendChild(btn);
-    });
+    this.props.registerTemplates(templates)
   }
 
   renderCertificate(doc) {
@@ -54,16 +47,15 @@ class IframeRenderer extends Component {
   }
 
   render() {
-    const { template } = this.props;
+    const { renderType } = this.props;
     return (
       <>
-        <div id="template-selectors" />
-
+        <MultiDocRenderer selectTemplateTab={this.selectTemplateTab.bind(this)} whitelist={[]}/>
         <iframe
           title="Rendered Certificate"
           id="frameless-iframe"
           ref={iframe => this._iframe = iframe}
-          src={template ? template.url : ''}
+          src={renderType ? renderType.url : ''}
           style={{ width: "100%", border: 0, height: "100%" }}
         />
       </>
@@ -72,13 +64,17 @@ class IframeRenderer extends Component {
 }
 
 const mapStateToProps = store => ({
-  document: getCertificate(store),
-  template: getTemplate(store)
+  document: getDocument(store),
+  renderType: getRenderType(store)
 });
 
-export default connect(mapStateToProps)(IframeRenderer);
+const mapDispatchToProps = dispatch => ({
+  registerTemplates: templates => dispatch(registerTemplatesAction(templates))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(IframeRenderer);
 
 IframeRenderer.propTypes = {
   document: PropTypes.object,
-  template: PropTypes.object
+  renderType: PropTypes.object
 };
