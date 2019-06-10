@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { verifySignature, validateSchema } from "@govtechsg/tradetrust-schema";
 import { updateDocument } from "../reducers/document";
+import { getLogger } from "../utils/logger";
+
+const {error, info} = getLogger("components:Home");
 
 class Home extends Component {
   handleCertificateChange(json) {
@@ -24,14 +27,14 @@ class Home extends Component {
     const reader = new FileReader();
 
     if (reader.error) {
-      console.log("error");
+      error("File reader error", reader.error);
     }
     reader.onload = e => {
       try {
         const json = JSON.parse(e.target.result);
         this.handleCertificateChange(json);
       } catch (e) {
-        console.log("error");
+        error("File onload error", e);
       }
     };
     reader.readAsText(input.files[0]);
@@ -39,14 +42,12 @@ class Home extends Component {
 
   render() {
     return (
-      <>
-        <input
-          type="file"
-          id="cert"
-          name="cert"
-          onChange={e => this.onFileDrop(e)}
-        />
-      </>
+      <input
+        type="file"
+        id="cert"
+        name="cert"
+        onChange={e => this.onFileDrop(e)}
+      />
     );
   }
 }
