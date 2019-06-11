@@ -2,7 +2,7 @@ import { Selector } from "testcafe";
 
 fixture("Document Template").page`http://localhost:3001`;
 
-const Document = "./sample/sample.json";
+const Document = "demo/sample.json";
 const IframeBlock = Selector("#iframe");
 const TranscriptButton = Selector(".nav-item").withText("Demo Doc 2");
 const SampleTemplate = Selector("#sample-template");
