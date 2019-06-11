@@ -31,7 +31,7 @@ class Home extends Component {
     }
     reader.onload = e => {
       try {
-        const json = JSON.parse(e.target.result);
+        const json = JSON.parse(e.target["result"]);
         this.handleCertificateChange(json);
       } catch (e) {
         error("File onload error", e);

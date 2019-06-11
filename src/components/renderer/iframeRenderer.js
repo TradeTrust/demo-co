@@ -58,7 +58,6 @@ class IframeRenderer extends Component {
       <>
         <MultiDocRenderer
           selectTemplateTab={this.selectTemplateTab.bind(this)}
-          whitelist={[]}
         />
         <iframe
           title="Rendered Certificate"
