@@ -3,9 +3,9 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 import sagas from "./sagas";
 import reducers from "./reducers";
-import { enableLogger, disableLogger} from "./utils/logger";
+import { enableLogger, disableLogger } from "./utils/logger";
 
-if(process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   enableLogger();
 } else {
   disableLogger();

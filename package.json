@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts start && set DEBUG=*",
+    "start": "react-scripts start",
     "build": "react-scripts build && react-snapshot",
     "test": "jest",
     "lint": "eslint . --ext .js --max-warnings 0",
