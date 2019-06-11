@@ -5,8 +5,7 @@ module.exports = {
   coverageDirectory: "<rootDir>/.coverage/",
   collectCoverageFrom: [
     "src/**/*.{js,jsx}",
-    "scripts/**/*.{js,jsx}",
-    "!src/components/CertificateTemplates/tlds/**"
+    "scripts/**/*.{js,jsx}"
   ],
   testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)test.[jt]s?(x)"],
   moduleNameMapper: {

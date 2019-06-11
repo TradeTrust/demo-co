@@ -1,7 +1,7 @@
 {
   "name": "tradetrust-website",
   "version": "1.0.0",
-  "description": "",
+  "description": "tradetrust website",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TradeTrust/demo-co.git"
+    "url": "git+https://github.com/TradeTrust/tradetrust-website.git"
   },
-  "author": "",
+  "author": "Sumit Chaudhari",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TradeTrust/demo-co/issues"
+    "url": "https://github.com/TradeTrust/tradetrust-website/issues"
   },
   "homepage": ".",
   "dependencies": {
