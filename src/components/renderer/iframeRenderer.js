@@ -62,7 +62,7 @@ class IframeRenderer extends Component {
         />
         <iframe
           title="Rendered Certificate"
-          id="frameless-iframe"
+          id="iframe"
           ref={iframe => (this._iframe = iframe)}
           src={renderType ? renderType.url : ""}
           style={{ width: "100%", border: 0, height: "100%" }}

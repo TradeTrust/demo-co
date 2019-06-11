@@ -39,14 +39,12 @@ class Home extends Component {
 
   render() {
     return (
-      <>
-        <input
-          type="file"
-          id="cert"
-          name="cert"
-          onChange={e => this.onFileDrop(e)}
-        />
-      </>
+      <input
+        type="file"
+        id="cert"
+        name="cert"
+        onChange={e => this.onFileDrop(e)}
+      />
     );
   }
 }
