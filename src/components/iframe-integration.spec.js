@@ -33,6 +33,4 @@ test("Sample document is rendered correctly", async t => {
     "DEMO STORE",
     "Reciepient Name"
   ]);
-
 });
-
