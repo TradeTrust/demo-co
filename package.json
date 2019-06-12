@@ -1,11 +1,12 @@
 {
   "name": "tradetrust-website",
   "version": "1.0.0",
-  "description": "",
+  "description": "tradetrust website",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts start && set DEBUG=*",
+    "start": "react-scripts start",
     "build": "react-scripts build && react-snapshot",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "test": "jest",
     "lint": "eslint . --ext .js --max-warnings 0",
     "lint:fix": "eslint . --ext .js --fix",
@@ -14,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TradeTrust/demo-co.git"
+    "url": "git+https://github.com/TradeTrust/tradetrust-website.git"
   },
-  "author": "",
+  "author": "Sumit Chaudhari",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TradeTrust/demo-co/issues"
+    "url": "https://github.com/TradeTrust/tradetrust-website/issues"
   },
   "homepage": ".",
   "dependencies": {
@@ -34,7 +35,8 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.1",
     "redux": "^4.0.1",
-    "redux-saga": "^1.0.2"
+    "redux-saga": "^1.0.2",
+    "source-map-explorer": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
