@@ -4,10 +4,21 @@ import { connect } from "react-redux";
 import { verifySignature, validateSchema } from "@govtechsg/tradetrust-schema";
 import { updateDocument } from "reducers/document";
 import { getLogger } from "utils/logger";
+import { setNewWeb3, getWeb3 } from "services/web3";
 
 const { error } = getLogger("components:Home");
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    console.log("here")
+    getWeb3()
+    .then((res) => {console.log(res)})
+    .catch(e => { console.log(e)});
+  }
+
   handleCertificateChange(json) {
     const validated = validateSchema(json);
     if (!validated) {

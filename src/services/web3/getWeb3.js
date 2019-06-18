@@ -1,43 +1,30 @@
-import Web3 from "web3";
+import { ethers } from 'ethers';
 import {NETWORK_TYPES, INFURA_PROJECT_ID} from "config";
-
-const ProviderEngine = require("web3-provider-engine");
-const WebsocketSubProvider = require("web3-provider-engine/subproviders/websocket.js");
 
 let web3Instance;
 
 async function loadWeb3InfuraWebsocket(mainnet = true) {
-  const rpcUrl = mainnet
-    ? `wss://mainnet.infura.io/ws/v3/${INFURA_PROJECT_ID}`
-    : `wss://ropsten.infura.io/ws/v3/${INFURA_PROJECT_ID}`;
+  console.log("new demo mainnet", mainnet)
+  const net = mainnet ? "mainnet" : "ropsten"
 
-  const engine = new ProviderEngine();
-  const web3 = new Web3(engine);
-  const fetchProvider = new WebsocketSubProvider({ rpcUrl });
-  engine.addProvider(fetchProvider);
-  engine.start();
-
-  return web3;
+  return new ethers.providers.InfuraProvider(net, INFURA_PROJECT_ID);
 }
 
 async function loadWeb3Injected() {
+  console.log("new demo injected")
   let { web3 } = window;
   const alreadyInjected = typeof web3 !== "undefined";
 
   if (!alreadyInjected) throw new Error("Metamask cannot be found");
 
-  web3 = new Web3(web3.currentProvider);
+  web3 = new ethers.providers.Web3Provider(web3.currentProvider);
 
   return web3;
 }
 
 async function loadWeb3CustomRpc(rpc = "http://localhost:8545") {
-  let { web3 } = window;
-
-  const provider = new Web3.providers.HttpProvider(rpc);
-  web3 = new Web3(provider);
-
-  return web3;
+  console.log("new demo rpc")
+  return new ethers.providers.JsonRpcProvider(rpc);
 }
 
 async function loadWeb3Mock() {
@@ -73,7 +60,7 @@ async function resolveWeb3(
         web3Instance = await loadWeb3Mock();
         break;
       default:
-        web3Instance = await loadWeb3InfuraWebsocket();
+        web3Instance = await ethers.getDefaultProvider('ropsten');
     }
     resolve(web3Instance);
   } catch (e) {
@@ -82,6 +69,7 @@ async function resolveWeb3(
 }
 
 export function setNewWeb3(t, config) {
+  console.log("new demo")
   return new Promise((resolve, reject) => {
     // Wait for loading completion to avoid race conditions with web3 injection timing.
     // Server-side rendering fails when trying to access window
@@ -98,6 +86,7 @@ export function setNewWeb3(t, config) {
 }
 
 export function getWeb3(t, config) {
+  console.log("trye here")
   if (web3Instance) {
     return new Promise(resolve => {
       resolve(web3Instance);
