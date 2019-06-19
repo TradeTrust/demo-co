@@ -1,7 +1,5 @@
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import createSagaMiddleware from "redux-saga";
-import sagas from "./sagas";
+import React, { useReducer } from "react";
+import PropTypes from "prop-types";
 import reducers from "./reducers";
 import { enableLogger, disableLogger } from "./utils/logger";
 
@@ -11,15 +9,16 @@ if (process.env.NODE_ENV === "development") {
   disableLogger();
 }
 
-const sagaMiddleware = createSagaMiddleware();
+export const Store = React.createContext(); //eslint-disable-line
 
-const configureStore = () => {
-  const store = createStore(
-    reducers,
-    composeWithDevTools(applyMiddleware(sagaMiddleware))
-  );
-  sagaMiddleware.run(sagas);
-  return store;
+const initialState = {};
+
+export function StoreProvider(props) {
+  const [state, dispatch] = useReducer(reducers, initialState);
+  const value = { state, dispatch };
+  return <Store.Provider value={value}>{props.children}</Store.Provider>;
+}
+
+StoreProvider.propTypes = {
+  children: PropTypes.func
 };
-
-export default configureStore;

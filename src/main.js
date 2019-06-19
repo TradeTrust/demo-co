@@ -1,12 +1,30 @@
 import { Switch, Route } from "react-router-dom";
 import React from "react";
-import Home from "components/index";
-import IframeRenderer from "components/renderer/iframeRenderer";
+import Loadable from "react-loadable";
+
+const Home = Loadable({
+  loader: () =>
+    import(
+      /* webpackChunkName: "home" */ "./components/home/container/index.js"
+    ),
+  loading: () => null,
+  modules: ["home"]
+});
+
+const IframeRenderer = Loadable({
+  loader: () =>
+    import(
+      /* webpackChunkName: "iframneRenderer" */ "./components/renderer/iframeRenderer/index.js"
+    ),
+  loading: () => null,
+  modules: ["iframeRenderer"]
+});
+
 function Main() {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/renderer" component={IframeRenderer} />
+      <Route exact path="/renderer" component={IframeRenderer} />
     </Switch>
   );
 }

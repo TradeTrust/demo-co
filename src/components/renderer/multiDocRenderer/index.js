@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 
-import { getTemplates } from "reducers/document";
+import { getTemplates } from "components/renderer";
+import { Store } from "store";
 
-const MultiDocRenderer = ({ templates, selectTemplateTab }) => {
+const MultiDocRenderer = ({ selectTemplateTab }) => {
   const [activeTab, setActiveTab] = useState(0);
+  const { state } = React.useContext(Store);
+  const templates = getTemplates(state);
   return (
     <ul className="nav nav-tabs container" id="myTab" role="tablist">
       {templates && templates.length > 0
@@ -31,14 +33,7 @@ const MultiDocRenderer = ({ templates, selectTemplateTab }) => {
   );
 };
 
-const mapStateToProps = store => ({
-  templates: getTemplates(store)
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(MultiDocRenderer);
+export default MultiDocRenderer;
 
 MultiDocRenderer.propTypes = {
   document: PropTypes.object,

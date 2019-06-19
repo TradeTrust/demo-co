@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 
-import document from "./document";
+import home from "components/home";
+import renderer from "components/renderer";
 
 export default combineReducers({
-  document
+  home,
+  renderer
 });
