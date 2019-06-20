@@ -9,30 +9,30 @@
     border-radius: 10px;
 }
 
-    default {
-        background-color: blue;
-        border: 2px dashed blue;
-        box-shadow: 0 0 0px 10px blue;
+    .default {
+        background-color: #f5f8fb;
+        border: 2px dashed #0099cc;
+        box-shadow: 0 0 0px 10px f5f8fb;
     }
 
-    accept {
+    .accept {
         background-color: green;
         border: 2px dashed blue;
         box-shadow: 0 0 0px 10px green;
     }
 
-    warning {
+    .warning {
         background-color: yellow;
         border: 2px dashed yellow;
         box-shadow: 0 0 0px 10px yellow;
         color: orange;
     }
 
-    invalid {
-        background-color: red;
-        border: 2px dashed grey;
-        box-shadow: 0 0 0px 10px red;
-        color: grey;
+    .invalid {
+        background-color: #fbebe7;
+        border: 2px dashed #e46767;
+        box-shadow: 0 0 0px 10px #fbebe7;
+        color: #e46767;
 
     }
 

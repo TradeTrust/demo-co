@@ -161,13 +161,12 @@ export function getDocument(store) {
 
 export function getVerifying(store) {
   const {
-    documentIssuerVerifying,
+    // documentIssuerVerifying,
     documentHashVerifying,
     documentIssuedVerifying,
     documentNotRevokedVerifying
   } = store.document;
   return (
-    documentIssuerVerifying ||
     documentHashVerifying ||
     documentIssuedVerifying ||
     documentNotRevokedVerifying
@@ -178,9 +177,9 @@ export function getVerified(store) {
   const hash = getHashStatus(store).verified;
   const issued = getIssuedStatus(store).verified;
   const notRevoked = getNotRevokedStatus(store).verified;
-  const identity = getIssuerIdentityStatus(store).verified;
+  // const identity = getIssuerIdentityStatus(store).verified;
 
-  return hash && issued && notRevoked && identity;
+  return hash && issued && notRevoked;
 }
 
 export function getVerificationStatus(store) {

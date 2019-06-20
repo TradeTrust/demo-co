@@ -27,7 +27,6 @@ const { info } = getLogger("util:validate");
 
 export async function loadCertificateContracts(payload, next) {
   try {
-    console.log("trye", payload);
     const data = certificateData(payload);
     info(`Loading certificate: ${data}`);
 

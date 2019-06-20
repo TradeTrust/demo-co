@@ -14,21 +14,23 @@ const renderDropzoneContent = props => {
     isDragReject,
     verifying,
     fileError,
-    issuerIdentityStatus,
+    // issuerIdentityStatus,
     hashStatus,
     issuedStatus,
     notRevokedStatus,
     document,
-    verificationStatus
+    verificationStatus,
+    getRootProps,
+    getInputProps
   } = props;
   // isDragReject is checking for mimetype (but we skipped it)
   // fileError is when the file is not in JSON format and threw when deserilising
   // valid JSON files will be handled by handleCertificateChange()
   if (isDragReject || fileError) {
-    return <DefaultView hover={true} accept={false} />;
+    return <DefaultView hover={true} accept={false} rootProps={getRootProps()} inputProps={getInputProps()} />;
   }
   if (isDragAccept) {
-    return <DefaultView hover={true} accept={true} />;
+    return <DefaultView hover={true} accept={true} rootProps={getRootProps()} inputProps={getInputProps()} />;
   }
   if (verifying) {
     return <VerifyingView verificationStatus={verificationStatus} />;
@@ -46,16 +48,17 @@ const renderDropzoneContent = props => {
         hashStatus={hashStatus}
         issuedStatus={issuedStatus}
         notRevokedStatus={notRevokedStatus}
-        issuerIdentityStatus={issuerIdentityStatus}
+        // issuerIdentityStatus={issuerIdentityStatus}
       />
     );
   }
-  return <DefaultView hover={false} accept={true} />;
+
+  return <DefaultView hover={false} accept={true} rootProps={getRootProps()} inputProps={getInputProps()} />;
 };
 
 // Injects additional props on top of isDragReject, isDragActive, acceptedFiles & rejectedFiles
-const renderDropzoneContentCurry = additionalProps => props =>
-  renderDropzoneContent({ ...props, ...additionalProps });
+// const renderDropzoneContentCurry = additionalProps => props =>
+//   renderDropzoneContent({ ...props, ...additionalProps });
 
 const onFileDrop = (
   acceptedFiles,
@@ -97,15 +100,25 @@ const CertificateDropzone = ({
     onFileDrop(acceptedFiles, handleCertificateChange, handleFileError);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragAccept, isDragReject } = useDropzone({ onDrop });
 
-  return (
-    <section>
-      <div {...getRootProps()}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
-      </div>
-    </section>
+  return (<div className="col-md-6" style={{margin: "auto", top: "20%"}}>
+    {renderDropzoneContent({
+      handleCertificateChange,
+      resetData,
+      handleRenderOverwrite,
+      fileError,
+      verifying,
+      issuerIdentityStatus,
+      hashStatus,
+      issuedStatus,
+      notRevokedStatus,
+      document,
+      verificationStatus,
+      isDragAccept,
+      isDragReject,
+    getRootProps, getInputProps})}
+    </div>
   );
 };
 

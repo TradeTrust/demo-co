@@ -5,7 +5,7 @@ import "./viewerStyles.css";
 
 const View = ({
   resetData,
-  issuerIdentityStatus,
+  // issuerIdentityStatus,
   hashStatus,
   issuedStatus,
   notRevokedStatus
@@ -51,7 +51,7 @@ const View = ({
           <p className={"messages"}>The certificate has been revoked</p>
         ) : null}
 
-        {!issuerIdentityStatus.verified ? (
+        {/* {!issuerIdentityStatus.verified ? (
           <div>
             <p className={"messages"}>
               Certificate from unregistered institution
@@ -61,7 +61,7 @@ const View = ({
               not registered with OpenCerts
             </p>
           </div>
-        ) : null}
+        ) : null} */}
       </div>
 
       <Link to="/faq">
@@ -109,7 +109,7 @@ View.propTypes = {
   resetData: PropTypes.func,
   document: PropTypes.object,
 
-  issuerIdentityStatus: PropTypes.object,
+  // issuerIdentityStatus: PropTypes.object,
   hashStatus: PropTypes.object,
   issuedStatus: PropTypes.object,
   notRevokedStatus: PropTypes.object

@@ -49,7 +49,7 @@ const DocumentDropZoneContainer = ({ history }) => {
   const handleFileError = () => setFileError(true);
 
   const resetData = () => resetDocumentState(dispatch);
-  console.log("state", state.document);
+  console.log("state", verifying);
   return (
     <DocumentDropZone
       document={document}
