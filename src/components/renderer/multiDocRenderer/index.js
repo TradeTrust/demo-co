@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { getTemplates } from "components/renderer";
+import { getTemplates } from "components/renderer/actions";
 import { Store } from "store";
 
 const MultiDocRenderer = ({ selectTemplateTab }) => {

@@ -5,7 +5,7 @@ import Loadable from "react-loadable";
 const Home = Loadable({
   loader: () =>
     import(
-      /* webpackChunkName: "home" */ "./components/home/container/index.js"
+      /* webpackChunkName: "home" */ "./components/home/dropZone/index.js"
     ),
   loading: () => null,
   modules: ["home"]

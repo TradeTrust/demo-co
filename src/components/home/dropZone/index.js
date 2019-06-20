@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { verifySignature, validateSchema } from "@govtechsg/tradetrust-schema";
-import { updateDocument } from "components/renderer";
+import { updateDocument } from "components/renderer/actions";
 import { getLogger } from "utils/logger";
 
-import { updateNetworkId } from "components/home";
+import { updateNetworkId } from "components/home/actions";
 import { Store } from "store";
 const { error } = getLogger("components:Home");
 

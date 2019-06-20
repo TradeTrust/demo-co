@@ -7,7 +7,7 @@ import {
   getDocument,
   getRenderType,
   registerTemplates as registerTemplatesAction
-} from "components/renderer";
+} from "components/renderer/actions";
 import { certificateData } from "@govtechsg/tradetrust-schema";
 import MultiDocRenderer from "../multiDocRenderer";
 
@@ -27,7 +27,6 @@ const IframeRenderer = props => {
         updateTemplates
       }
     });
-    console.log(connection, "connecttion it is");
     if (!doc) {
       return props.history.push("/");
     }
@@ -35,9 +34,7 @@ const IframeRenderer = props => {
   }, []);
 
   const selectTemplateTab = (conn => i => {
-    console.log("her eis sis dss", connection);
     conn.promise.then(frame => {
-      console.log("frame", frame);
       frame.selectTemplateTab(i);
     });
   })(connection);
@@ -54,7 +51,6 @@ const IframeRenderer = props => {
 
   const renderCertificate = doc => {
     connection.promise.then(frame => {
-      console.log("frame in render", frame);
       frame.renderCertificate(doc);
     });
   };
