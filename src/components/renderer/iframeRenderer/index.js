@@ -19,6 +19,10 @@ const IframeRenderer = props => {
   const doc = getDocument(state);
 
   useEffect(() => {
+    if (!doc) {
+      return props.history.push("/");
+    }
+
     let iframe = document.querySelector("iframe");
     connection = connectToChild({
       iframe,
@@ -27,9 +31,7 @@ const IframeRenderer = props => {
         updateTemplates
       }
     });
-    if (!doc) {
-      return props.history.push("/");
-    }
+
     renderDocument(certificateData(doc));
   }, []);
 
@@ -51,13 +53,13 @@ const IframeRenderer = props => {
 
   const renderDocument = doc => {
     connection.promise.then(frame => {
-      frame.renderDocument(doc);
+      frame.renderCertificate(doc);
     });
   };
 
   return (
     <>
-      <MultiDocRenderer selectTemplateTab={i => selectTemplateTab(i)} />
+      { doc && <MultiDocRenderer selectTemplateTab={i => selectTemplateTab(i)} />}
       <iframe
         title="Rendered Document"
         id="iframe"
