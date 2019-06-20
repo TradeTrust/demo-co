@@ -1,8 +1,3 @@
-export const appTypes = {
-  UPDATE_NETWORK: "UPDATE_NETWORK",
-  NETWORK_RESET: "NETWORK_RESET" // For network change
-};
-
 export const appInitialState = {
   network: null,
   networkUpdatePending: false
@@ -34,6 +29,11 @@ export const docInitialState = {
   documentIssuerError: null,
 
   verificationStatus: []
+};
+
+export const appTypes = {
+  UPDATE_NETWORK: "UPDATE_NETWORK",
+  NETWORK_RESET: "NETWORK_RESET" // For network change
 };
 
 // Actions

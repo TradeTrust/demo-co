@@ -26,7 +26,7 @@ export function matchNetwork(networkId) {
   return networkIdVerbose[networkId] || `Custom Network: ${networkId}`;
 }
 
-const getSelectedWeb3 = async (getNew = false) => {
+export const getSelectedWeb3 = async (getNew = false) => {
   // const networkPending = yield select(getNetworkPending);
   // if (networkPending && !getNew) {
   //   // block if there's a network update pending

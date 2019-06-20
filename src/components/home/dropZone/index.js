@@ -13,8 +13,10 @@ import {
 import { updateNetworkId } from "components/home/actions";
 import DocumentDropZone from "./dropzone";
 import { Store } from "store";
+import { withMiddleware } from "middleware";
+import { verifyDocument } from "components/home/utils/validate";
 
-const DocumentDropZoneContainer = () => {
+const DocumentDropZoneContainer = ({ history }) => {
   const { state, dispatch } = React.useContext(Store);
   const [fileError, setFileError] = useState(false);
   const document = getDocument(state);
@@ -34,13 +36,20 @@ const DocumentDropZoneContainer = () => {
 
   const handleCertificateChange = certificate => {
     setFileError(false);
-    updateDocument(dispatch, certificate);
+    const wrappedDispatch = withMiddleware(certificate, dispatch)(
+      verifyDocument
+    );
+    updateDocument(wrappedDispatch, certificate)
+      .then(verified => {
+        if (verified) history.push("/renderer");
+      })
+      .catch(e => console.log(e));
   };
 
   const handleFileError = () => setFileError(true);
 
   const resetData = () => resetDocumentState(dispatch);
-
+  console.log("state", state.document);
   return (
     <DocumentDropZone
       document={document}
@@ -79,15 +88,7 @@ const DocumentDropZoneContainer = () => {
 export default DocumentDropZoneContainer;
 
 DocumentDropZoneContainer.propTypes = {
-  updateNetworkId: PropTypes.func,
-  document: PropTypes.object,
-  handleCertificateChange: PropTypes.func,
-  updateCertificate: PropTypes.func,
-  resetData: PropTypes.func,
-  verifying: PropTypes.bool,
-  issuerIdentityStatus: PropTypes.object,
-  hashStatus: PropTypes.object,
-  issuedStatus: PropTypes.object,
-  notRevokedStatus: PropTypes.object,
-  verificationStatus: PropTypes.array
+  history: PropTypes.shape({
+    push: PropTypes.func
+  })
 };

@@ -30,7 +30,7 @@ const IframeRenderer = props => {
     if (!doc) {
       return props.history.push("/");
     }
-    renderCertificate(certificateData(doc));
+    renderDocument(certificateData(doc));
   }, []);
 
   const selectTemplateTab = (conn => i => {
@@ -49,9 +49,9 @@ const IframeRenderer = props => {
     registerTemplatesAction(dispatch, templates);
   };
 
-  const renderCertificate = doc => {
+  const renderDocument = doc => {
     connection.promise.then(frame => {
-      frame.renderCertificate(doc);
+      frame.renderDocument(doc);
     });
   };
 
@@ -59,7 +59,7 @@ const IframeRenderer = props => {
     <>
       <MultiDocRenderer selectTemplateTab={i => selectTemplateTab(i)} />
       <iframe
-        title="Rendered Certificate"
+        title="Rendered Document"
         id="iframe"
         src={renderType ? renderType.url : ""}
         style={{ width: "100%", border: 0, height: "100%" }}

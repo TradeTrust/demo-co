@@ -74,7 +74,7 @@ export default function reducer(state = docInitialState, action) {
         verificationStatus: [
           ...state.verificationStatus,
           {
-            message: "Certificate has been tampered",
+            message: "Document has been tampered",
             warning: false,
             error: true
           }
@@ -89,7 +89,7 @@ export default function reducer(state = docInitialState, action) {
         verificationStatus: [
           ...state.verificationStatus,
           {
-            message: "Certificate has been issued",
+            message: "Document has been issued",
             warning: false,
             error: false
           }
@@ -104,7 +104,7 @@ export default function reducer(state = docInitialState, action) {
         verificationStatus: [
           ...state.verificationStatus,
           {
-            message: "Certificate is not issued",
+            message: "Document is not issued",
             warning: false,
             error: true
           }
@@ -119,7 +119,7 @@ export default function reducer(state = docInitialState, action) {
         verificationStatus: [
           ...state.verificationStatus,
           {
-            message: "Certificate is issued",
+            message: "Document is issued",
             warning: false,
             error: false
           }
@@ -134,7 +134,7 @@ export default function reducer(state = docInitialState, action) {
         verificationStatus: [
           ...state.verificationStatus,
           {
-            message: "Certificate has been revoked",
+            message: "Document has been revoked",
             warning: false,
             error: true
           }
@@ -149,7 +149,7 @@ export default function reducer(state = docInitialState, action) {
         verificationStatus: [
           ...state.verificationStatus,
           {
-            message: "Certificate issuer is registered",
+            message: "Document issuer is registered",
             warning: false,
             error: false
           }

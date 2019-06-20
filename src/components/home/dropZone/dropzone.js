@@ -98,7 +98,7 @@ const CertificateDropzone = ({
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
-  
+
   return (
     <section>
       <div {...getRootProps()}>

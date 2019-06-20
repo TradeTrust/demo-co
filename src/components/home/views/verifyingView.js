@@ -26,7 +26,7 @@ const View = ({ verificationStatus }) => {
     >
       <i className="fas fa-spinner fa-pulse fa-3x" />
       <div className="m-3" style={{ fontSize: "1.5rem" }}>
-        Verifying Certificate...
+        Verifying Document...
       </div>
       {lastStatus && lastStatus.message ? (
         <div className="text-muted">
