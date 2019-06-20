@@ -1,7 +1,5 @@
 import { setNewWeb3, getWeb3, fetchNetwork } from "services/web3";
-import { types } from "components/home/reducer/constants";
-
-const { UPDATE_NETWORK } = types;
+import { appTypes } from "components/home/reducer/constants";
 
 export const updateNetworkId = async dispatch => {
   try {
@@ -9,7 +7,7 @@ export const updateNetworkId = async dispatch => {
     const networkId = await fetchNetwork(provider);
     // const networkIdVerbose = matchNetwork(networkId);
     return dispatch({
-      type: UPDATE_NETWORK,
+      type: appTypes.UPDATE_NETWORK,
       networkId
     });
   } catch (e) {

@@ -1,18 +1,10 @@
 import { types } from "components/renderer/reducer/constants";
 
 const {
-  UPDATE_DOCUMENT,
   DOCUMENT_TEMPLATE_REGISTER,
   DOCUMENT_TEMPLATE_SELECT_TAB
 } = types;
 
-// Action Creators
-export function updateDocument(dispatch, payload) {
-  return dispatch({
-    type: UPDATE_DOCUMENT,
-    payload
-  });
-}
 
 export function getDocument(store) {
   return store.renderer.docModified;
