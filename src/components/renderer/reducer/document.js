@@ -1,6 +1,6 @@
 import { get } from "lodash";
 import { certificateData } from "@govtechsg/tradetrust-schema";
-import {types, initialState} from "./constants";
+import { types, initialState } from "./constants";
 
 const {
   UPDATE_DOCUMENT,

@@ -1,4 +1,4 @@
-import {types, initialState} from "./constants";
+import { types, initialState } from "./constants";
 const { UPDATE_NETWORK } = types;
 
 export default function HomeReducer(state = initialState, action) {
