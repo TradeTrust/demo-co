@@ -11,7 +11,7 @@ const View = ({ hover, accept }) => (
     style={{ borderRadius: 10 }}
   >
     {/* <div className={"image-container"}> */}
-      {/* <i>
+    {/* <i>
         <img
           alt=".tradetrust Dropzone"
           src="/static/images/dropzone/dropzone_illustration.svg"

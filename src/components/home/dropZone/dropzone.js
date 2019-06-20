@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import PropTypes from "prop-types";
 
@@ -71,7 +71,6 @@ const onFileDrop = (
     try {
       const json = JSON.parse(reader.result);
       handleCertificateChange(json);
-      console.log(json, "certificate")
     } catch (e) {
       handleFileError(e);
     }
@@ -93,19 +92,22 @@ const CertificateDropzone = ({
   notRevokedStatus,
   document,
   verificationStatus
-}) => { 
+}) => {
   const onDrop = useCallback(acceptedFiles => {
-    onFileDrop(acceptedFiles, handleCertificateChange, handleFileError)
-  }, [])
-  const {getRootProps, getInputProps} = useDropzone({ onDrop });
+    onFileDrop(acceptedFiles, handleCertificateChange, handleFileError);
+  }, []);
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  
   return (
- 
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      <p>Drag 'n' drop some files here, or click to select files</p>
-    </div>
-);
-  }
+    <section>
+      <div {...getRootProps()}>
+        <input {...getInputProps()} />
+        <p>Drag 'n' drop some files here, or click to select files</p>
+      </div>
+    </section>
+  );
+};
 
 CertificateDropzone.propTypes = {
   document: PropTypes.object,

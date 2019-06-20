@@ -1,10 +1,6 @@
 import { types } from "components/renderer/reducer/constants";
 
-const {
-  DOCUMENT_TEMPLATE_REGISTER,
-  DOCUMENT_TEMPLATE_SELECT_TAB
-} = types;
-
+const { DOCUMENT_TEMPLATE_REGISTER, DOCUMENT_TEMPLATE_SELECT_TAB } = types;
 
 export function getDocument(store) {
   return store.renderer.docModified;

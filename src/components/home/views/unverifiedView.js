@@ -14,9 +14,7 @@ const View = ({
     hashStatus.verified && issuedStatus.verified && notRevokedStatus.verified;
   return (
     <div
-      className={`viewer-container ${
-        isWarning ? "warning" : "invalid"
-      }`}
+      className={`viewer-container ${isWarning ? "warning" : "invalid"}`}
       style={{
         backgroundColor: isWarning ? "#fbf6e9" : "#fbeae9",
         borderRadius: 10

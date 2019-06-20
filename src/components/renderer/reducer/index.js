@@ -1,9 +1,6 @@
 import { types, initialState } from "./constants";
 
-const {
-  DOCUMENT_TEMPLATE_REGISTER,
-  DOCUMENT_TEMPLATE_SELECT_TAB
-} = types;
+const { DOCUMENT_TEMPLATE_REGISTER, DOCUMENT_TEMPLATE_SELECT_TAB } = types;
 
 // Reducers
 export default function reducer(state = initialState, action) {

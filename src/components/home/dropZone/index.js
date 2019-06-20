@@ -4,7 +4,6 @@ import {
   updateDocument,
   getDocument,
   getVerifying,
-  getIssuerIdentityStatus,
   getHashStatus,
   getIssuedStatus,
   getNotRevokedStatus,
@@ -16,7 +15,7 @@ import DocumentDropZone from "./dropzone";
 import { Store } from "store";
 
 const DocumentDropZoneContainer = () => {
-    const { state, dispatch } = React.useContext(Store);
+  const { state, dispatch } = React.useContext(Store);
   const [fileError, setFileError] = useState(false);
   const document = getDocument(state);
   const verifying = getVerifying(state);
@@ -33,31 +32,31 @@ const DocumentDropZoneContainer = () => {
     []
   );
 
-  const handleCertificateChange = (certificate) => {
+  const handleCertificateChange = certificate => {
     setFileError(false);
     updateDocument(dispatch, certificate);
-  }
+  };
 
   const handleFileError = () => setFileError(true);
 
   const resetData = () => resetDocumentState(dispatch);
 
-    return (
-      <DocumentDropZone
-        document={document}
-        fileError={fileError}
-        handleCertificateChange={handleCertificateChange}
-        handleFileError={handleFileError}
-        verifying={verifying}
-        // issuerIdentityStatus={issuerIdentityStatus}
-        hashStatus={hashStatus}
-        issuedStatus={issuedStatus}
-        notRevokedStatus={notRevokedStatus}
-        verificationStatus={verificationStatus}
-        resetData={resetData}
-      />
-    );
-}
+  return (
+    <DocumentDropZone
+      document={document}
+      fileError={fileError}
+      handleCertificateChange={handleCertificateChange}
+      handleFileError={handleFileError}
+      verifying={verifying}
+      // issuerIdentityStatus={issuerIdentityStatus}
+      hashStatus={hashStatus}
+      issuedStatus={issuedStatus}
+      notRevokedStatus={notRevokedStatus}
+      verificationStatus={verificationStatus}
+      resetData={resetData}
+    />
+  );
+};
 
 // const mapStateToProps = store => ({
 //   document: getCertificate(store),
