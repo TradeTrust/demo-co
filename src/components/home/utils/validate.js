@@ -18,7 +18,7 @@ import DocumentStoreDefinition from "services/contracts/DocumentStore.json";
 import { combinedHash } from "utils";
 import { ensResolveAddress } from "services/ens";
 import { docTypes } from "components/home/reducer/constants";
-import { getSelectedWeb3 } from "components/home/actions";
+import { getSelectedWeb3 } from "components/home/actions/appActions";
 const { info } = getLogger("util:validate");
 
 export async function loadCertificateContracts(payload, next) {
@@ -30,6 +30,7 @@ export async function loadCertificateContracts(payload, next) {
       issuer => issuer.certificateStore
     );
     const web3 = await getSelectedWeb3(next);
+    console.log(web3, "provider valye to the last")
     const contractStoreAddresses = await Promise.all(
       unresolvedContractStoreAddresses.map(unresolvedAddress =>
         ensResolveAddress(unresolvedAddress)

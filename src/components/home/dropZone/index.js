@@ -10,7 +10,7 @@ import {
   getVerificationStatus,
   resetDocumentState
 } from "components/home/actions/documentActions";
-import { updateNetworkId } from "components/home/actions";
+import { updateNetworkId } from "components/home/actions/appActions";
 import DocumentDropZone from "./dropzone";
 import { Store } from "store";
 import { withMiddleware } from "middleware";
@@ -49,6 +49,7 @@ const DocumentDropZoneContainer = ({ history }) => {
   const handleFileError = () => setFileError(true);
 
   const resetData = () => resetDocumentState(dispatch);
+  console.log(state.home, "hopme staet---------")
   return (
     <DocumentDropZone
       document={document}

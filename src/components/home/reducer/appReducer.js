@@ -16,7 +16,6 @@ export default function reducer(state = appInitialState, action) {
         currentBlockContents: undefined
       };
     case appTypes.UPDATE_NETWORK_ID_SUCCESS:
-    console.log("actio payload", action.payload)
       return {
         ...state,
         network: action.payload.network,
