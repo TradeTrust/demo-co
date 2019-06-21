@@ -74,10 +74,7 @@ export async function verifyDocumentHash(next, { document }) {
   return false;
 }
 
-export async function verifyDocumentIssued(
-  next,
-  { document, documentStores }
-) {
+export async function verifyDocumentIssued(next, { document, documentStores }) {
   try {
     const merkleRoot = `0x${get(document, "signature.merkleRoot", "")}`;
 

@@ -2,9 +2,9 @@ import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import PropTypes from "prop-types";
 
-import DefaultView from "components/home/views/defaultView";
-import VerifyingView from "components/home/views/verifyingView";
-import UnverifiedView from "components/home/views/unverifiedView";
+import DefaultView from "./views/defaultView";
+import VerifyingView from "./views/verifyingView";
+import UnverifiedView from "./views/unverifiedView";
 
 const renderDropzoneContent = props => {
   const {
@@ -27,10 +27,24 @@ const renderDropzoneContent = props => {
   // fileError is when the file is not in JSON format and threw when deserilising
   // valid JSON files will be handled by handleCertificateChange()
   if (isDragReject || fileError) {
-    return <DefaultView hover={true} accept={false} rootProps={getRootProps()} inputProps={getInputProps()} />;
+    return (
+      <DefaultView
+        hover={true}
+        accept={false}
+        rootProps={getRootProps()}
+        inputProps={getInputProps()}
+      />
+    );
   }
   if (isDragAccept) {
-    return <DefaultView hover={true} accept={true} rootProps={getRootProps()} inputProps={getInputProps()} />;
+    return (
+      <DefaultView
+        hover={true}
+        accept={true}
+        rootProps={getRootProps()}
+        inputProps={getInputProps()}
+      />
+    );
   }
   if (verifying) {
     return <VerifyingView verificationStatus={verificationStatus} />;
@@ -53,12 +67,15 @@ const renderDropzoneContent = props => {
     );
   }
 
-  return <DefaultView hover={false} accept={true} rootProps={getRootProps()} inputProps={getInputProps()} />;
+  return (
+    <DefaultView
+      hover={false}
+      accept={true}
+      rootProps={getRootProps()}
+      inputProps={getInputProps()}
+    />
+  );
 };
-
-// Injects additional props on top of isDragReject, isDragActive, acceptedFiles & rejectedFiles
-// const renderDropzoneContentCurry = additionalProps => props =>
-//   renderDropzoneContent({ ...props, ...additionalProps });
 
 const onFileDrop = (
   acceptedFiles,
@@ -96,28 +113,39 @@ const CertificateDropzone = ({
   document,
   verificationStatus
 }) => {
-  const onDrop = useCallback(acceptedFiles => {
-    onFileDrop(acceptedFiles, handleCertificateChange, handleFileError);
-  }, []);
+  const onDrop = useCallback(
+    acceptedFiles => {
+      onFileDrop(acceptedFiles, handleCertificateChange, handleFileError);
+    },
+    [handleCertificateChange, handleFileError]
+  );
 
-  const { getRootProps, getInputProps, isDragAccept, isDragReject } = useDropzone({ onDrop });
+  const {
+    getRootProps,
+    getInputProps,
+    isDragAccept,
+    isDragReject
+  } = useDropzone({ onDrop });
 
-  return (<div className="col-md-6" style={{margin: "auto", top: "20%"}}>
-    {renderDropzoneContent({
-      handleCertificateChange,
-      resetData,
-      handleRenderOverwrite,
-      fileError,
-      verifying,
-      issuerIdentityStatus,
-      hashStatus,
-      issuedStatus,
-      notRevokedStatus,
-      document,
-      verificationStatus,
-      isDragAccept,
-      isDragReject,
-    getRootProps, getInputProps})}
+  return (
+    <div className="col-md-6" style={{ margin: "auto", top: "20%" }}>
+      {renderDropzoneContent({
+        handleCertificateChange,
+        resetData,
+        handleRenderOverwrite,
+        fileError,
+        verifying,
+        issuerIdentityStatus,
+        hashStatus,
+        issuedStatus,
+        notRevokedStatus,
+        document,
+        verificationStatus,
+        isDragAccept,
+        isDragReject,
+        getRootProps,
+        getInputProps
+      })}
     </div>
   );
 };
@@ -150,7 +178,9 @@ renderDropzoneContent.propTypes = {
   hashStatus: PropTypes.object,
   issuedStatus: PropTypes.object,
   notRevokedStatus: PropTypes.object,
-  verificationStatus: PropTypes.array
+  verificationStatus: PropTypes.array,
+  getRootProps: PropTypes.func,
+  getInputProps: PropTypes.func
 };
 
 export default CertificateDropzone;

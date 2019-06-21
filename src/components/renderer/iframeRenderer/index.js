@@ -33,7 +33,7 @@ const IframeRenderer = props => {
     });
 
     renderDocument(certificateData(doc));
-  }, []);
+  }, [doc, props]);
 
   const selectTemplateTab = (conn => i => {
     conn.promise.then(frame => {
@@ -59,7 +59,9 @@ const IframeRenderer = props => {
 
   return (
     <>
-      { doc && <MultiDocRenderer selectTemplateTab={i => selectTemplateTab(i)} />}
+      {doc && (
+        <MultiDocRenderer selectTemplateTab={i => selectTemplateTab(i)} />
+      )}
       <iframe
         title="Rendered Document"
         id="iframe"

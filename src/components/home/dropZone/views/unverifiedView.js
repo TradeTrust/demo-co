@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./viewerStyles.css";
+import invalid from "static/images/dropzone/invalid.svg";
+import warning from "static/images/dropzone/warning.svg";
 
 const View = ({
   resetData,
@@ -22,9 +24,9 @@ const View = ({
     >
       <span className={"message-container"}>
         {isWarning ? (
-          <img src="/static/images/dropzone/warning.svg" />
+          <img alt="document warning" src={warning} />
         ) : (
-          <img src="/static/images/dropzone/invalid.svg" />
+          <img alt="document invalid" src={invalid} />
         )}
         <span
           className={`${isWarning ? "warning" : "invalid"} m-3`}
@@ -71,7 +73,7 @@ const View = ({
       <div className={"secondary-links"}>
         <span>
           <Link to=" ">
-            <a
+            <button
               onClick={e => {
                 e.preventDefault();
                 resetData();
@@ -79,7 +81,7 @@ const View = ({
               className={"text-link"}
             >
               Try another
-            </a>
+            </button>
           </Link>
         </span>
         {isWarning ? (
@@ -91,9 +93,9 @@ const View = ({
             }}
           >
             <Link to="/viewer">
-              <a id="certificate-view-anyway" className={"text-link"}>
+              <button id="certificate-view-anyway" className={"text-link"}>
                 View certificate anyway
-              </a>
+              </button>
             </Link>
           </span>
         ) : (

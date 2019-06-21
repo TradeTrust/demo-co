@@ -6,6 +6,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "eject": "react-scripts eject",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "test": "jest",
     "lint": "eslint . --ext .js --max-warnings 0",

@@ -30,7 +30,6 @@
 
     .invalid {
         background-color: #fbebe7;
-        border: 2px dashed #e46767;
         box-shadow: 0 0 0px 10px #fbebe7;
         color: #e46767;
 

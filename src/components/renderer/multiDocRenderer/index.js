@@ -13,7 +13,7 @@ const MultiDocRenderer = ({ selectTemplateTab }) => {
       {templates && templates.length > 0
         ? templates.map((t, idx) => (
             <li key={idx} className="nav-item">
-              <a
+              <button
                 className={`nav-link ${idx === activeTab ? "active" : ""}`}
                 id={t.id}
                 onClick={() => {
@@ -25,7 +25,7 @@ const MultiDocRenderer = ({ selectTemplateTab }) => {
                 aria-selected="true"
               >
                 {t.label}
-              </a>
+              </button>
             </li>
           ))
         : null}

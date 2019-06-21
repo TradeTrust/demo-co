@@ -31,7 +31,7 @@ const DocumentDropZoneContainer = ({ history }) => {
       async function updateNetwork() {
         await updateNetworkId(dispatch);
       },
-    []
+    [dispatch]
   );
 
   const handleCertificateChange = certificate => {
@@ -49,7 +49,6 @@ const DocumentDropZoneContainer = ({ history }) => {
   const handleFileError = () => setFileError(true);
 
   const resetData = () => resetDocumentState(dispatch);
-  console.log("state", verifying);
   return (
     <DocumentDropZone
       document={document}
@@ -66,24 +65,6 @@ const DocumentDropZoneContainer = ({ history }) => {
     />
   );
 };
-
-// const mapStateToProps = store => ({
-//   document: getCertificate(store),
-
-//   // Verification statuses used in verifier block
-//   verifying: getVerifying(store),
-//   issuerIdentityStatus: getIssuerIdentityStatus(store),
-//   hashStatus: getHashStatus(store),
-//   issuedStatus: getIssuedStatus(store),
-//   notRevokedStatus: getNotRevokedStatus(store),
-//   verificationStatus: getVerificationStatus(store)
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   updateNetworkId: () => dispatch(updateNetworkId()),
-//   updateCertificate: payload => dispatch(updateCertificate(payload)),
-//   resetData: () => dispatch(resetCertificateState())
-// });
 
 export default DocumentDropZoneContainer;
 
