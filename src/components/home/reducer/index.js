@@ -1,12 +1,4 @@
-import { appTypes, appInitialState } from "./constants";
+import appReducer from "./appReducer";
+import documentReducer from "./documentReducer";
 
-export default function HomeReducer(state = appInitialState, action) {
-  switch (action.type) {
-    case appTypes.NETWORK_RESET:
-      return { ...appInitialState };
-    case appTypes.UPDATE_NETWORK:
-      return { ...state, network: action.networkId };
-    default:
-      return state;
-  }
-}
+export { appReducer, documentReducer};

@@ -1,6 +1,14 @@
+import { DEFAULT_NETWORK } from "config";
+
 export const appInitialState = {
   network: null,
-  networkUpdatePending: false
+  networkId: null,
+  networkIdVerbose: "",
+  customRpc: "",
+  networkUpdatePending: true,
+  txPollingList: {},
+  currentBlockContents: undefined,
+  currentBlockNumber: 0
 };
 
 export const docInitialState = {
@@ -32,8 +40,18 @@ export const docInitialState = {
 };
 
 export const appTypes = {
+  NETWORK_RESET: "NETWORK_RESET",
   UPDATE_NETWORK: "UPDATE_NETWORK",
-  NETWORK_RESET: "NETWORK_RESET" // For network change
+  UPDATE_NETWORK_ID: "UPDATE_NETWORK_ID",
+  UPDATE_NETWORK_ID_SUCCESS: "UPDATE_NETWORK_ID_SUCCESS",
+  UPDATE_NETWORK_ID_FAILURE: "UPDATE_NETWORK_ID_FAILURE",
+
+  NEW_BLOCK: "NEW_BLOCK",
+
+  TRANSACTION_MINED: "TRANSACTION_MINED",
+
+  TX_POLLING_ADD: "TX_POLLING_ADD",
+  TX_POLLING_REMOVE: "TX_POLLING_REMOVE"
 };
 
 // Actions

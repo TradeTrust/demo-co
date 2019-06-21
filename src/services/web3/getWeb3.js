@@ -1,6 +1,9 @@
 import { ethers } from "ethers";
 import { NETWORK_TYPES, INFURA_PROJECT_ID } from "config";
 
+import { getLogger } from "utils/logger";
+const { error } = getLogger("services:getWeb3");
+
 let web3Instance;
 
 async function loadWeb3InfuraWebsocket(mainnet = true) {
@@ -65,6 +68,15 @@ async function resolveWeb3(
   }
 }
 
+
+export const fetchNetwork = async provider => {
+  try {
+    return await provider.getNetwork();
+  } catch (e) {
+    error("fetch network error", e);
+  }
+};
+
 export function setNewWeb3(t, config) {
   return new Promise((resolve, reject) => {
     // Wait for loading completion to avoid race conditions with web3 injection timing.
@@ -80,14 +92,6 @@ export function setNewWeb3(t, config) {
     }
   });
 }
-
-export const fetchNetwork = async provider => {
-  try {
-    return await provider.getNetwork();
-  } catch (e) {
-    console.log(e);
-  }
-};
 
 export function getWeb3(t, config) {
   if (web3Instance) {

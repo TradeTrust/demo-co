@@ -1,13 +1,14 @@
-// Wrap web3.eth.getAccounts in a Promise
-const ethers = require("ethers");
+import ethers from "ethers";
+import { getLogger } from "utils/logger";
+const { error } = getLogger("services:getAccouns");
+
 const getAccounts = async () => {
   let provider;
   provider = new ethers.providers.Web3Provider(window.web3.currentProvider);
-
   try {
     return await provider.listAccounts();
   } catch (e) {
-    console.log(e);
+    error("get accounts", e);
   }
 };
 

@@ -1,6 +1,6 @@
 import { getAddr } from "./ens";
-import { isEthereumAddress } from "../../utils";
-import { getLogger } from "../../utils/logger";
+import { isEthereumAddress } from "utils";
+import { getLogger } from "utils/logger";
 
 const { info } = getLogger("services:ensResolveAddress");
 

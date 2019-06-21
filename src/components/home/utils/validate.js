@@ -13,16 +13,12 @@ import {
 import { certificateData, verifySignature } from "@govtechsg/tradetrust-schema";
 // import { isValidAddress as isEthereumAddress } from "ethereumjs-util";
 import { getLogger } from "utils/logger";
-
 import DocumentStoreDefinition from "services/contracts/DocumentStore.json";
 // import fetchIssuers from "services/issuers";
 import { combinedHash } from "utils";
 import { ensResolveAddress } from "services/ens";
-
 import { docTypes } from "components/home/reducer/constants";
-
 import { getSelectedWeb3 } from "components/home/actions";
-
 const { info } = getLogger("util:validate");
 
 export async function loadCertificateContracts(payload, next) {
@@ -33,7 +29,7 @@ export async function loadCertificateContracts(payload, next) {
     const unresolvedContractStoreAddresses = get(data, "issuers", []).map(
       issuer => issuer.certificateStore
     );
-    const web3 = await getSelectedWeb3();
+    const web3 = await getSelectedWeb3(next);
     const contractStoreAddresses = await Promise.all(
       unresolvedContractStoreAddresses.map(unresolvedAddress =>
         ensResolveAddress(unresolvedAddress)
