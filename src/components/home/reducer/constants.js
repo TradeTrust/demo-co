@@ -1,7 +1,7 @@
 import { DEFAULT_NETWORK } from "config";
 
 export const appInitialState = {
-  network: null,
+  network: DEFAULT_NETWORK,
   networkId: null,
   networkIdVerbose: "",
   customRpc: "",

@@ -26,13 +26,12 @@ const DocumentDropZoneContainer = ({ history }) => {
   const notRevokedStatus = getNotRevokedStatus(state);
   const verificationStatus = getVerificationStatus(state);
 
-  useEffect(
-    () =>
-      async function updateNetwork() {
-        await updateNetworkId(dispatch);
-      },
-    [dispatch]
-  );
+  useEffect(() => {
+    async function updateNetwork() {
+      await updateNetworkId(dispatch, state);
+    }
+    updateNetwork();
+  }, [dispatch, state]);
 
   const handleCertificateChange = certificate => {
     setFileError(false);
@@ -49,7 +48,7 @@ const DocumentDropZoneContainer = ({ history }) => {
   const handleFileError = () => setFileError(true);
 
   const resetData = () => resetDocumentState(dispatch);
-  console.log(state.home, "hopme staet---------")
+
   return (
     <DocumentDropZone
       document={document}

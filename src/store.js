@@ -14,7 +14,10 @@ if (process.env.NODE_ENV === "development") {
 }
 
 export const Store = React.createContext(); //eslint-disable-line
-const initialState = { home: appInitialState, document: docInitialState };
+const initialState = {
+  application: appInitialState,
+  document: docInitialState
+};
 
 export function StoreProvider(props) {
   const [state, dispatch] = useReducer(reducers, initialState);

@@ -1,4 +1,4 @@
 import * as appActions from "./appActions";
 import * as documentActions from "./documentActions";
 
-export {appActions, documentActions};
+export { appActions, documentActions };

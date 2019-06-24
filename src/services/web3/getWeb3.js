@@ -68,7 +68,6 @@ async function resolveWeb3(
   }
 }
 
-
 export const fetchNetwork = async provider => {
   try {
     return await provider.getNetwork();

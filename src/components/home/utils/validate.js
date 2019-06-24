@@ -18,8 +18,8 @@ import DocumentStoreDefinition from "services/contracts/DocumentStore.json";
 import { combinedHash } from "utils";
 import { ensResolveAddress } from "services/ens";
 import { docTypes } from "components/home/reducer/constants";
-import { getSelectedWeb3 } from "components/home/actions/appActions";
-const { info } = getLogger("util:validate");
+import { getWeb3 } from "services/web3";
+const { info, error } = getLogger("util:validate");
 
 export async function loadCertificateContracts(payload, next) {
   try {
@@ -29,8 +29,7 @@ export async function loadCertificateContracts(payload, next) {
     const unresolvedContractStoreAddresses = get(data, "issuers", []).map(
       issuer => issuer.certificateStore
     );
-    const web3 = await getSelectedWeb3(next);
-    console.log(web3, "provider valye to the last")
+    const provider = await getWeb3();
     const contractStoreAddresses = await Promise.all(
       unresolvedContractStoreAddresses.map(unresolvedAddress =>
         ensResolveAddress(unresolvedAddress)
@@ -41,7 +40,7 @@ export async function loadCertificateContracts(payload, next) {
     const { abi } = DocumentStoreDefinition;
 
     const contracts = await contractStoreAddresses.map(
-      address => new ethers.Contract(address, abi, web3)
+      address => new ethers.Contract(address, abi, provider)
     );
 
     await next({
@@ -250,25 +249,29 @@ export async function verifyDocumentNotRevoked(
 //   }
 
 export const verifyDocument = state => next => async action => {
-  next(action);
-  next({ type: docTypes.VERIFYING_DOCUMENT });
-  const documentStores = await loadCertificateContracts(state, next);
+  try {
+    next(action);
+    next({ type: docTypes.VERIFYING_DOCUMENT });
+    const documentStores = await loadCertificateContracts(state, next);
 
-  const args = { documentStores, document: state };
+    const args = { documentStores, document: state };
 
-  const verificationStatuses = await Promise.all([
-    verifyDocumentIssued(next, args),
-    verifyDocumentHash(next, args),
-    verifyDocumentNotRevoked(next, args)
-    //   certificateIssuerRecognised: call(verifyCertificateIssuer, args)
-  ]);
+    const verificationStatuses = await Promise.all([
+      verifyDocumentIssued(next, args),
+      verifyDocumentHash(next, args),
+      verifyDocumentNotRevoked(next, args)
+      //   certificateIssuerRecognised: call(verifyCertificateIssuer, args)
+    ]);
 
-  if (
-    verificationStatuses[0] &&
-    verificationStatuses[1] &&
-    verificationStatuses[2]
-  ) {
-    return true;
+    if (
+      verificationStatuses[0] &&
+      verificationStatuses[1] &&
+      verificationStatuses[2]
+    ) {
+      return true;
+    }
+    return false;
+  } catch (e) {
+    error("verify document error", e);
   }
-  return false;
 };
