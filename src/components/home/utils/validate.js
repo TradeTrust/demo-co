@@ -10,7 +10,7 @@ import {
   verifyingDocumentRevocationFailure
 } from "components/home/actions/documentActions";
 
-import { certificateData, verifySignature } from "@govtechsg/tradetrust-schema";
+import { certificateData, verifySignature, validateSchema } from "@govtechsg/tradetrust-schema";
 // import { isValidAddress as isEthereumAddress } from "ethereumjs-util";
 import { getLogger } from "utils/logger";
 import DocumentStoreDefinition from "services/contracts/DocumentStore.json";
@@ -257,16 +257,18 @@ export const verifyDocument = state => next => async action => {
     const args = { documentStores, document: state };
 
     const verificationStatuses = await Promise.all([
+      validateSchema(state),
       verifyDocumentIssued(next, args),
       verifyDocumentHash(next, args),
       verifyDocumentNotRevoked(next, args)
       //   certificateIssuerRecognised: call(verifyCertificateIssuer, args)
     ]);
-
+    
     if (
       verificationStatuses[0] &&
       verificationStatuses[1] &&
-      verificationStatuses[2]
+      verificationStatuses[2] &&
+      verificationStatuses[3]
     ) {
       return true;
     }
