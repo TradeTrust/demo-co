@@ -5,7 +5,7 @@ import resolverABI from "./contracts/resolverContract.json";
 import { getWeb3 } from "../web3";
 import { getLogger } from "../../utils/logger";
 
-const { trace, error } = getLogger("services:ens");
+const { info, error } = getLogger("services:ens");
 
 // Well-known addresses for ENS registry contracts
 const ensRegistryContractAddress = {
@@ -31,14 +31,14 @@ export function getNamehash(name) {
   if (name !== "") {
     const labels = name.split(".");
     const namehash = reduceRight(labels, appendHash, rootHash);
-    trace(`Namehash for ${name} is ${namehash}`);
+    info(`Namehash for ${name} is ${namehash}`);
     return namehash;
   }
   return rootHash;
 }
 
 const getResolverContract = async addr => {
-  trace("Instantiating resolver contract");
+  info("Instantiating resolver contract");
   const web3 = await getWeb3();
   const resolver = new web3.eth.Contract(resolverABI, addr);
   return {
@@ -49,13 +49,13 @@ const getResolverContract = async addr => {
 const getENSContract = async () => {
   const web3 = await getWeb3();
   const networkId = await web3.eth.net.getId();
-  trace(`Instantiating ENS Contract for networkID: ${networkId}`);
+  info(`Instantiating ENS Contract for networkID: ${networkId}`);
   const ens = new web3.eth.Contract(
     ensContractABI,
     ensRegistryContractAddress[networkId].registry
   );
-  trace(`ENS Contract instantiated: ${ens}`);
-  trace(ens);
+  info(`ENS Contract instantiated: ${ens}`);
+  info(ens);
   return ens;
 };
 
@@ -63,20 +63,20 @@ const getResolverContractForDomain = async domain => {
   const ens = await getENSContract();
   const node = getNamehash(domain);
   const resolverContractAddress = await ens.methods.resolver(node).call();
-  trace(`Got resolver address for ${domain}: ${resolverContractAddress}`);
+  info(`Got resolver address for ${domain}: ${resolverContractAddress}`);
   const { resolver } = await getResolverContract(resolverContractAddress);
   return resolver;
 };
 
 export const getAddr = async domain => {
   try {
-    trace(`Attempting to resolve: ${domain}`);
+    info(`Attempting to resolve: ${domain}`);
     const node = getNamehash(domain);
     const resolver = await getResolverContractForDomain(domain);
-    trace(resolver);
+    info(resolver);
     const setAddrMethod = resolver.methods.addr(node);
     const address = await setAddrMethod.call();
-    trace(`Resolution of ${domain} resulted in: ${address}`);
+    info(`Resolution of ${domain} resulted in: ${address}`);
     return address;
   } catch (err) {
     error(err);
@@ -90,10 +90,10 @@ export const getText = async (domain, recordType) => {
     const node = getNamehash(domain);
     const resolver = await getResolverContractForDomain(domain);
 
-    trace(`Calling getText:${recordType} on ENS for ${domain}`);
+    info(`Calling getText:${recordType} on ENS for ${domain}`);
     const getTextMethod = resolver.methods.text(node, recordType);
     const text = await getTextMethod.call();
-    trace(
+    info(
       `Retrieving text record ${recordType} of ${domain} resulted in: ${text}`
     );
     return text;
