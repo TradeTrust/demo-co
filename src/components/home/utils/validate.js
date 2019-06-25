@@ -10,7 +10,11 @@ import {
   verifyingDocumentRevocationFailure
 } from "components/home/actions/documentActions";
 
-import { certificateData, verifySignature, validateSchema } from "@govtechsg/tradetrust-schema";
+import {
+  certificateData,
+  verifySignature,
+  validateSchema
+} from "@govtechsg/tradetrust-schema";
 // import { isValidAddress as isEthereumAddress } from "ethereumjs-util";
 import { getLogger } from "utils/logger";
 import DocumentStoreDefinition from "services/contracts/DocumentStore.json";
@@ -59,14 +63,16 @@ export async function loadCertificateContracts(payload, next) {
 export async function verifyDocumentHash(next, { document }) {
   const verified = verifySignature(document);
   if (verified) {
-    await verifyingDocumentHashSuccess(next);
+    await next(verifyingDocumentHashSuccess());
     return true;
   }
 
-  await verifyingDocumentHashFailure(next, {
-    error: "Certificate data does not match target hash",
-    document: certificateData(document)
-  });
+  await next(
+    verifyingDocumentHashFailure({
+      error: "Certificate data does not match target hash",
+      document: certificateData(document)
+    })
+  );
   return false;
 }
 
@@ -80,13 +86,15 @@ export async function verifyDocumentIssued(next, { document, documentStores }) {
     );
     const isIssued = issuedStatuses.reduce((prev, curr) => prev && curr, true);
     if (!isIssued) throw new Error("Certificate has not been issued");
-    await verifyingDocumentIssuedSuccess(next);
+    await next(verifyingDocumentIssuedSuccess());
     return true;
   } catch (e) {
-    await verifyingDocumentIssuedFailure(next, {
-      document: certificateData(document),
-      error: e.message
-    });
+    await next(
+      verifyingDocumentIssuedFailure({
+        document: certificateData(document),
+        error: e.message
+      })
+    );
     return false;
   }
 }
@@ -130,13 +138,15 @@ export async function verifyDocumentNotRevoked(
         throw new Error(`Document has been revoked, revoked hash: ${hash}`);
     }
 
-    await verifyingDocumentRevocationSuccess(next);
+    await next(verifyingDocumentRevocationSuccess());
     return true;
   } catch (e) {
-    await verifyingDocumentRevocationFailure(next, {
-      document: certificateData(document),
-      error: e.message
-    });
+    await next(
+      verifyingDocumentRevocationFailure({
+        document: certificateData(document),
+        error: e.message
+      })
+    );
 
     return false;
   }
@@ -263,7 +273,7 @@ export const verifyDocument = state => next => async action => {
       verifyDocumentNotRevoked(next, args)
       //   certificateIssuerRecognised: call(verifyCertificateIssuer, args)
     ]);
-    
+
     if (
       verificationStatuses[0] &&
       verificationStatuses[1] &&

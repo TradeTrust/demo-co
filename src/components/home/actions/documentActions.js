@@ -1,103 +1,100 @@
 import { docTypes } from "components/home/reducer/constants";
 // Action Creators
-export function resetDocumentState(dispatch) {
-  return dispatch({
+export function resetDocumentState() {
+  return {
     type: docTypes.RESET_DOCUMENT
-  });
+  };
 }
 
-export function updateDocument(dispatch, payload) {
-  return dispatch({
+export function updateDocument(payload) {
+  return {
     type: docTypes.UPDATE_DOCUMENT,
     payload
-  });
+  };
 }
 
-export function verifyDocument(dispatch, payload) {
-  return dispatch({
+export function verifyDocument(payload) {
+  return {
     type: docTypes.VERIFYING_DOCUMENT,
     payload
-  });
+  };
 }
 
-export function updateFilteredDocument(dispatch, payload) {
-  return dispatch({
+export function updateFilteredDocument(payload) {
+  return {
     type: docTypes.UPDATE_FILTERED_DOCUMENT,
     payload
-  });
+  };
 }
 
-export function verifyingDocumentIssuerSuccess(dispatch, payload) {
-  return dispatch({
+export function verifyingDocumentIssuerSuccess(payload) {
+  return {
     type: docTypes.VERIFYING_DOCUMENT_ISSUER_SUCCESS,
     payload
-  });
+  };
 }
 
-export function verifyingDocumenteIssuerFailure(dispatch, { error, document }) {
-  return dispatch({
+export function verifyingDocumenteIssuerFailure({ error, document }) {
+  return {
     type: docTypes.VERIFYING_DOCUMENT_ISSUER_FAILURE,
     error,
     document
-  });
+  };
 }
 
-export function verifyingDocumentRevocationSuccess(dispatch) {
-  return dispatch({
+export function verifyingDocumentRevocationSuccess() {
+  return {
     type: docTypes.VERIFYING_DOCUMENT_REVOCATION_SUCCESS
-  });
+  };
 }
 
-export function verifyingDocumentRevocationFailure(
-  dispatch,
-  { error, document }
-) {
-  return dispatch({
+export function verifyingDocumentRevocationFailure({ error, document }) {
+  return {
     type: docTypes.VERIFYING_DOCUMENT_REVOCATION_FAILURE,
     error,
     document
-  });
+  };
 }
 
-export function verifyingDocumentIssuedSuccess(dispatch) {
-  return dispatch({
+export function verifyingDocumentIssuedSuccess() {
+  return {
     type: docTypes.VERIFYING_DOCUMENT_ISSUED_SUCCESS
-  });
+  };
 }
 
-export function verifyingDocumentIssuedFailure(dispatch, { error, document }) {
-  return dispatch({
+export function verifyingDocumentIssuedFailure({ error, document }) {
+  return {
     type: docTypes.VERIFYING_DOCUMENT_ISSUED_FAILURE,
     error,
     document
-  });
+  };
 }
 
-export function verifyingDocumentHashSuccess(dispatch) {
-  return dispatch({
+export function verifyingDocumentHashSuccess() {
+  return {
     type: docTypes.VERIFYING_DOCUMENT_HASH_SUCCESS
-  });
+  };
 }
 
-export function verifyingDocumentHashFailure(dispatch, { error, document }) {
-  return dispatch({
+export function verifyingDocumentHashFailure({ error, document }) {
+  return {
     type: docTypes.VERIFYING_DOCUMENT_HASH_FAILURE,
     error,
     document
-  });
+  };
 }
 
-export function resetDocumentObfuscation(dispatch) {
-  return dispatch({
+export function resetDocumentObfuscation() {
+  return {
     type: docTypes.DOCUMENT_OBFUSCATE_RESET
-  });
+  };
 }
 
-export function updateObfuscatedDocument(dispatch, payload) {
-  return dispatch({
+export function updateObfuscatedDocument(payload) {
+  return {
     type: docTypes.DOCUMENT_OBFUSCATE_UPDATE,
     payload
-  });
+  };
 }
 
 // Selectors

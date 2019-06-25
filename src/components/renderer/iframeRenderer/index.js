@@ -48,7 +48,7 @@ const IframeRenderer = props => {
 
   const updateTemplates = templates => {
     if (!templates) return;
-    registerTemplatesAction(dispatch, templates);
+    dispatch(registerTemplatesAction(templates));
   };
 
   const renderDocument = doc => {
@@ -56,7 +56,7 @@ const IframeRenderer = props => {
       frame.renderCertificate(doc);
     });
   };
-
+  console.log(state);
   return (
     <>
       {doc && (

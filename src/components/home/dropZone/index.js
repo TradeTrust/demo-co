@@ -10,7 +10,9 @@ import {
   getVerificationStatus,
   resetDocumentState
 } from "components/home/actions/documentActions";
-import { updateNetworkId } from "components/home/actions/appActions";
+import { updateNetwork } from "components/home/actions/appActions";
+
+import { updateNetworkId } from "components/home/utils/network";
 import DocumentDropZone from "./dropzone";
 import { Store } from "store";
 import { withMiddleware } from "middleware";
@@ -27,10 +29,10 @@ const DocumentDropZoneContainer = ({ history }) => {
   const verificationStatus = getVerificationStatus(state);
 
   useEffect(() => {
-    async function updateNetwork() {
-      await updateNetworkId(dispatch, state);
-    }
-    updateNetwork();
+    (async () => {
+      const wrapperDispatch = withMiddleware(state, dispatch)(updateNetworkId);
+      await wrapperDispatch(updateNetwork());
+    })();
   }, [dispatch]); //passing state here causing the problem of rendering of document
 
   const handleCertificateChange = certificate => {
@@ -38,7 +40,7 @@ const DocumentDropZoneContainer = ({ history }) => {
     const wrappedDispatch = withMiddleware(certificate, dispatch)(
       verifyDocument
     );
-    updateDocument(wrappedDispatch, certificate)
+    wrappedDispatch(updateDocument(certificate))
       .then(verified => {
         if (verified) history.push("/renderer");
       })
@@ -47,7 +49,7 @@ const DocumentDropZoneContainer = ({ history }) => {
 
   const handleFileError = () => setFileError(true);
 
-  const resetData = () => resetDocumentState(dispatch);
+  const resetData = () => dispatch(resetDocumentState());
 
   return (
     <DocumentDropZone
