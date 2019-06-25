@@ -42,7 +42,7 @@
     "react-scripts": "^3.0.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
-    "source-map-explorer": "^2.0.0"
+    "source-map-explorer": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -55,7 +55,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
     "isomorphic-fetch": "^2.2.1",
