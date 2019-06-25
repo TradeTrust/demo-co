@@ -8,7 +8,7 @@ import {
   getRenderType,
   registerTemplates as registerTemplatesAction
 } from "../../reducers/document";
-import { certificateData } from "@govtechsg/tradetrust-schema";
+import { getData } from "@govtechsg/tradetrust-schema";
 import MultiDocRenderer from "./multiDocRenderer";
 
 class IframeRenderer extends Component {
@@ -31,7 +31,7 @@ class IframeRenderer extends Component {
     if (!this.props.document) {
       return this.props.history.push("/");
     }
-    this.renderCertificate(certificateData(this.props.document));
+    this.renderDocument(getData(this.props.document));
   }
 
   selectTemplateTab(i) {
@@ -48,8 +48,8 @@ class IframeRenderer extends Component {
     this.props.registerTemplates(templates);
   }
 
-  renderCertificate(doc) {
-    this.connection.promise.then(frame => frame.renderCertificate(doc));
+  renderDocument(doc) {
+    this.connection.promise.then(frame => frame.renderDocument(doc));
   }
 
   render() {
