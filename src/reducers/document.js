@@ -1,5 +1,5 @@
 import { get } from "lodash";
-import { certificateData } from "@govtechsg/tradetrust-schema";
+import { getData } from "@govtechsg/tradetrust-schema";
 
 export const initialState = {
   doc: null,
@@ -24,7 +24,7 @@ export default function reducer(state = initialState, action) {
         ...initialState,
         doc: action.payload,
         docModified: action.payload,
-        renderType: get(certificateData(action.payload), "$template")
+        renderType: get(getData(action.payload), "$template")
       };
     case types.DOCUMENT_TEMPLATE_REGISTER:
       return {
