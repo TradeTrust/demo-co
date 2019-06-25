@@ -76,7 +76,7 @@ export async function verifyDocumentIssued(next, { document, documentStores }) {
 
     // Checks if document has been issued on ALL store
     const issuedStatuses = await Promise.all(
-      documentStores.map(store => store.isIssued(merkleRoot)) // why map in opencerts
+      documentStores.map(store => store.isIssued(merkleRoot))
     );
     const isIssued = issuedStatuses.reduce((prev, curr) => prev && curr, true);
     if (!isIssued) throw new Error("Certificate has not been issued");

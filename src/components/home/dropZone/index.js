@@ -31,7 +31,7 @@ const DocumentDropZoneContainer = ({ history }) => {
       await updateNetworkId(dispatch, state);
     }
     updateNetwork();
-  }, [dispatch, state]);
+  }, [dispatch]); //passing state here causing the problem of rendering of document
 
   const handleCertificateChange = certificate => {
     setFileError(false);
