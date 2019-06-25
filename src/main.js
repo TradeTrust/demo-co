@@ -14,7 +14,7 @@ const Home = Loadable({
 const IframeRenderer = Loadable({
   loader: () =>
     import(
-      /* webpackChunkName: "iframneRenderer" */ "./components/renderer/iframeRenderer/index.js"
+      /* webpackChunkName: "iframeRenderer" */ "./components/renderer/iframeRenderer/index.js"
     ),
   loading: () => null,
   modules: ["iframeRenderer"]

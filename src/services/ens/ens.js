@@ -2,8 +2,9 @@ import { stripHexPrefix, bufferToHex, keccak256 } from "ethereumjs-util";
 import { reduceRight } from "lodash";
 import ensContractABI from "./contracts/ensContract.json";
 import resolverABI from "./contracts/resolverContract.json";
-import { getWeb3 } from "../web3";
+import { getWeb3, fetchNetwork } from "../web3";
 import { getLogger } from "../../utils/logger";
+import { ethers } from "ethers";
 
 const { info, error } = getLogger("services:ens");
 
@@ -39,20 +40,21 @@ export function getNamehash(name) {
 
 const getResolverContract = async addr => {
   info("Instantiating resolver contract");
-  const web3 = await getWeb3();
-  const resolver = new web3.eth.Contract(resolverABI, addr);
+  const provider = await getWeb3();
+  const resolver = new ethers.Contract(addr, resolverABI, provider);
   return {
     resolver
   };
 };
 
 const getENSContract = async () => {
-  const web3 = await getWeb3();
-  const networkId = await web3.eth.net.getId();
+  const provider = await getWeb3();
+  const networkId = await fetchNetwork();
   info(`Instantiating ENS Contract for networkID: ${networkId}`);
-  const ens = new web3.eth.Contract(
+  const ens = new ethers.Contract(
+    ensRegistryContractAddress[networkId].registry,
     ensContractABI,
-    ensRegistryContractAddress[networkId].registry
+    provider
   );
   info(`ENS Contract instantiated: ${ens}`);
   info(ens);

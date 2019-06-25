@@ -6,10 +6,9 @@ import {
 } from "components/home/actions/appActions";
 
 export const updateNetworkId = state => next => async action => {
-  console.log(action, "action is ");
   try {
     next(action);
-    const provider = await getSelectedWeb3(next, true, state);
+    const provider = await getSelectedProvider(next, true, state);
     const network = await fetchNetwork(provider);
     const networkIdVerbose = matchNetwork(network.chainId);
     return next({
@@ -39,13 +38,13 @@ export function matchNetwork(networkId) {
   return networkIdVerbose[networkId] || `Custom Network: ${networkId}`;
 }
 
-export const getSelectedWeb3 = async (dispatch, getNew = false, store) => {
+export const getSelectedProvider = async (dispatch, getNew = false, store) => {
   const networkPending = await getNetworkPending(store);
   if (networkPending && !getNew) {
     // block if there's a network update pending
     await dispatch({ type: appTypes.UPDATE_NETWORK_ID_SUCCESS });
   }
   const network = await getNetwork(store);
-  const web3 = (await getNew) ? setNewWeb3(network) : getWeb3(); // update web3 only if requested specifically
-  return web3;
+  const provider = (await getNew) ? setNewWeb3(network) : getWeb3(); // update web3 only if requested specifically
+  return provider;
 };

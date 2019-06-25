@@ -53,7 +53,7 @@ const IframeRenderer = props => {
 
   const renderDocument = doc => {
     connection.promise.then(frame => {
-      frame.renderCertificate(doc);
+      frame.renderDocument(doc);
     });
   };
   console.log(state);

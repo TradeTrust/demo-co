@@ -21,8 +21,8 @@ export const useWeb3Provider = (dispatch, getNew = false) => {
       const network = getNetwork(state);
       if (!provider) {
         await setNewWeb3(network);
-        let web3 = await getWeb3();
-        setProvider(web3);
+        let provider = await getWeb3();
+        setProvider(provider);
       }
     })();
   }, [getNew]);
