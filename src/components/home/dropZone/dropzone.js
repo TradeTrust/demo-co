@@ -128,7 +128,7 @@ const CertificateDropzone = ({
   } = useDropzone({ onDrop });
 
   return (
-    <div className="col-md-6" style={{ margin: "auto", top: "20%" }}>
+    <div id="dropzone" className="col-md-6" style={{ margin: "auto", top: "20%" }}>
       {renderDropzoneContent({
         handleCertificateChange,
         resetData,

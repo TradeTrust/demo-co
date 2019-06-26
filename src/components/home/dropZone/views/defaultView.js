@@ -9,6 +9,7 @@ const View = ({ hover, accept, rootProps, inputProps }) => {
         // eslint-disable-next-line no-nested-ternary
         hover ? (accept ? "accept" : "invalid") : "default"
       }`}
+      id="default-view"
       style={{ borderRadius: 10, height: 300 }}
       {...rootProps}
     >
