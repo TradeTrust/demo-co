@@ -59,15 +59,16 @@ describe("validate document", () => {
   });
 
   describe("verifyDocumentHash", () => {
+    let stub;
     beforeEach(() => {
-      sinon.stub(tradeTrustScehma, "verifySignature").returns(true);
+      stub = sinon.stub(tradeTrustScehma, "verifySignature");
     });
     afterEach(() => {
-      tradeTrustScehma.verifySignature.restore();
+      stub.restore();
     });
     const dispatch = jest.fn();
     it("should return true when verification is successful", async () => {
-      // tradeTrustScehma.verifySignature.returns(true);
+      stub.returns(true);
       const { document } = whenThereIsOneEthereumAddressIssuer();
       const res = await verifyDocumentHash(dispatch, { document });
 
