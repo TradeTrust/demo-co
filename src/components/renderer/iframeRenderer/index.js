@@ -8,7 +8,7 @@ import {
   getRenderType,
   registerTemplates as registerTemplatesAction
 } from "components/renderer/actions";
-import { certificateData } from "@govtechsg/tradetrust-schema";
+import { getData } from "@govtechsg/tradetrust-schema";
 import MultiDocRenderer from "../multiDocRenderer";
 
 let connection = null;
@@ -32,7 +32,7 @@ const IframeRenderer = props => {
       }
     });
 
-    renderDocument(certificateData(doc));
+    renderDocument(getData(doc));
   }, [doc, props]);
 
   const selectTemplateTab = (conn => i => {

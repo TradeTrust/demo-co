@@ -1,6 +1,6 @@
 import { docTypes, docInitialState } from "./constants";
 import { get } from "lodash";
-import { certificateData } from "@govtechsg/tradetrust-schema";
+import { getData } from "@govtechsg/tradetrust-schema";
 // Reducers
 export default function reducer(state = docInitialState, action) {
   switch (action.type) {
@@ -13,7 +13,7 @@ export default function reducer(state = docInitialState, action) {
         ...docInitialState,
         doc: action.payload,
         docModified: action.payload,
-        renderType: get(certificateData(action.payload), "$template")
+        renderType: get(getData(action.payload), "$template")
       };
     case docTypes.LOADING_STORE_SUCCESS:
       return {

@@ -11,7 +11,7 @@ import {
 } from "components/home/actions/documentActions";
 
 import {
-  certificateData,
+  getData,
   verifySignature,
   validateSchema
 } from "@govtechsg/tradetrust-schema";
@@ -27,7 +27,7 @@ const { info, error } = getLogger("util:validate");
 
 export async function loadCertificateContracts(payload, next) {
   try {
-    const data = certificateData(payload);
+    const data = getData(payload);
     info(`Loading certificate: ${data}`);
 
     const unresolvedContractStoreAddresses = get(data, "issuers", []).map(
@@ -70,7 +70,7 @@ export async function verifyDocumentHash(next, { document }) {
   await next(
     verifyingDocumentHashFailure({
       error: "Certificate data does not match target hash",
-      document: certificateData(document)
+      document: getData(document)
     })
   );
   return false;
@@ -91,7 +91,7 @@ export async function verifyDocumentIssued(next, { document, documentStores }) {
   } catch (e) {
     await next(
       verifyingDocumentIssuedFailure({
-        document: certificateData(document),
+        document: getData(document),
         error: e.message
       })
     );
@@ -140,7 +140,7 @@ export async function verifyDocumentNotRevoked(
   } catch (e) {
     await next(
       verifyingDocumentRevocationFailure({
-        document: certificateData(document),
+        document: getData(document),
         error: e.message
       })
     );
@@ -200,7 +200,7 @@ export async function verifyDocumentNotRevoked(
 
 //   export function* verifyCertificateIssuer({ certificate }) {
 //     try {
-//       const data = certificateData(certificate);
+//       const data = getData(certificate);
 //       const contractStoreAddresses = get(data, "issuers", []).map(
 //         issuer => issuer.certificateStore
 //       );
@@ -248,7 +248,7 @@ export async function verifyDocumentNotRevoked(
 //       yield put(
 //         verifyingCertificateIssuerFailure({
 //           error: e.message,
-//           certificate: certificateData(certificate)
+//           certificate: getData(certificate)
 //         })
 //       );
 //       return false;
