@@ -13,7 +13,7 @@ import {
   proof0,
   proof1,
   rootHash
-} from "./testutils";
+} from "./testUtils";
 
 function whenThereIsOneEthereumAddressIssuer() {
   const ethereumAddresses = ["0xd2536C3cc7eb51447F6dA8d60Ba6344A79590b4F"];
