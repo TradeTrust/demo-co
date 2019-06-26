@@ -26,7 +26,7 @@
   },
   "homepage": ".",
   "dependencies": {
-    "@govtechsg/tradetrust-schema": "^1.0.5",
+    "@govtechsg/tradetrust-schema": "^1.0.7",
     "bootstrap": "^4.3.1",
     "debug": "^4.1.1",
     "ethereumjs-util": "^6.1.0",
