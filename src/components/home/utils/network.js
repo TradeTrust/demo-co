@@ -11,7 +11,7 @@ export const updateNetworkId = state => next => async action => {
     const provider = await getSelectedProvider(next, true, state);
     const network = await fetchNetwork(provider);
     const networkIdVerbose = matchNetwork(network.chainId);
-    return next({
+    await next({
       type: appTypes.UPDATE_NETWORK_ID_SUCCESS,
       payload: {
         network: network,
@@ -19,11 +19,13 @@ export const updateNetworkId = state => next => async action => {
         networkIdVerbose
       }
     });
+    return true;
   } catch (e) {
-    return next({
+    await next({
       type: appTypes.UPDATE_NETWORK_ID_FAILURE,
       payload: e
     });
+    return false;
   }
 };
 

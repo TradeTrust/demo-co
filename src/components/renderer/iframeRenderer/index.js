@@ -56,7 +56,7 @@ const IframeRenderer = props => {
       frame.renderDocument(doc);
     });
   };
-  console.log(state);
+
   return (
     <>
       {doc && (

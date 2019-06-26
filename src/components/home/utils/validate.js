@@ -119,13 +119,10 @@ export async function verifyDocumentNotRevoked(
   try {
     const targetHash = get(document, "signature.targetHash", null);
     const proof = get(document, "signature.proof", null);
-
     // Checks if document and path towards merkle root has been revoked
     const intermediateHashes = getIntermediateHashes(targetHash, proof);
-
     for (let i = 0; i < intermediateHashes.length; i += 1) {
       const hash = intermediateHashes[i];
-
       // Check if document is revoked on ALL store
       const revokedStatus = await Promise.all(
         documentStores.map(store => store.isRevoked(hash))
