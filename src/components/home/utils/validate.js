@@ -28,10 +28,10 @@ const { info, error } = getLogger("util:validate");
 export async function loadCertificateContracts(payload, next) {
   try {
     const data = getData(payload);
-    info(`Loading certificate: ${data}`);
+    info(`Loading document: ${data}`);
 
     const unresolvedContractStoreAddresses = get(data, "issuers", []).map(
-      issuer => issuer.certificateStore
+      issuer => issuer.documentStore
     );
     const provider = await getWeb3();
     const contractStoreAddresses = await Promise.all(

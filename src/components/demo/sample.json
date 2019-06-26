@@ -9,13 +9,12 @@
     },
     "description": "ac718eb3-4fbc-4e1d-b932-dd9a066d411f:string:A Certificate",
     "issuedOn": "52ddd9b9-151d-47ca-a194-09f7d039d26f:string:2018-08-30T00:00:00+08:00",
-    "certificateType": "487e0b67-9e82-484f-823c-c1d2257aeec2:string:Certificate of Origin",
     "issuers": [
       {
         "name": "95ffbe98-2c7a-49dc-b562-684bc271f9ea:string:DEMO STORE",
         "address": "373f44e5-c98c-4590-8f0e-08ed782f4bdc:string:Changi Singapore -123456",
         "country": "3e1d12c0-c49c-43c6-92a3-8ab0b845922a:string:Singapore",
-        "certificateStore": "0c580f0d-37b1-4925-9084-16003816c785:string:0x2f60375e8144e16Adf1979936301D8341D58C36C"
+        "documentStore": "0c580f0d-37b1-4925-9084-16003816c785:string:0x2f60375e8144e16Adf1979936301D8341D58C36C"
       }
     ],
     "recipient": {

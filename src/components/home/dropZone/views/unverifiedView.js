@@ -33,24 +33,24 @@ const View = ({
           style={{ fontSize: "1.5rem" }}
         >
           {isWarning
-            ? "Certificate from unregistered institution"
-            : "This certificate is not valid"}
+            ? "Document from unregistered institution"
+            : "This document is not valid"}
         </span>
       </span>
 
       <div className={"verifications"}>
         {!hashStatus.verified ? (
           <p className={"messages"}>
-            The certificate&#39;s contents are inaccurate
+            The document&#39;s contents are inaccurate
           </p>
         ) : null}
 
         {!issuedStatus.verified ? (
-          <p className={"messages"}>The certificate records are not found</p>
+          <p className={"messages"}>The document records are not found</p>
         ) : null}
 
         {!notRevokedStatus.verified ? (
-          <p className={"messages"}>The certificate has been revoked</p>
+          <p className={"messages"}>The document has been revoked</p>
         ) : null}
 
         {/* {!issuerIdentityStatus.verified ? (
@@ -94,7 +94,7 @@ const View = ({
           >
             <Link to="/viewer">
               <button id="certificate-view-anyway" className={"text-link"}>
-                View certificate anyway
+                View document anyway
               </button>
             </Link>
           </span>
