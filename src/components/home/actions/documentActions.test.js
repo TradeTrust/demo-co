@@ -12,12 +12,16 @@ describe("actions", () => {
 describe("selectors", () => {
   it("getHashStatus should return verified hash status", () => {
     const store = {
-        document: {
-            documentHash: "document hash is verified",
-            documentHashError: false,
-            documentHashVerifying: false
-          }
+      document: {
+        documentHash: "document hash is verified",
+        documentHashError: false,
+        documentHashVerifying: false
+      }
     };
-    expect(getHashStatus(store)).toEqual({verified: "document hash is verified",verifying: false,error: false});
+    expect(getHashStatus(store)).toEqual({
+      verified: "document hash is verified",
+      verifying: false,
+      error: false
+    });
   });
 });

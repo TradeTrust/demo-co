@@ -1,4 +1,9 @@
-import { updateNetwork, getNetwork, getNetworkPending, getNetworkId } from "./appActions";
+import {
+  updateNetwork,
+  getNetwork,
+  getNetworkPending,
+  getNetworkId
+} from "./appActions";
 
 describe("actions", () => {
   it("updateNetwork should generate correct action", () => {
@@ -13,11 +18,12 @@ describe("actions", () => {
 
 describe("selectors", () => {
   it("getNetwork should return network object", () => {
+    const store = {
       application: {
-        network: {chainId: 3, ens: "0x21nkjn3n2kn32kn"}
+        network: { chainId: 3, ens: "0x21nkjn3n2kn32kn" }
       }
     };
-    expect(getNetwork(store)).toEqual({chainId: 3, ens: "0x21nkjn3n2kn32kn"});
+    expect(getNetwork(store)).toEqual({ chainId: 3, ens: "0x21nkjn3n2kn32kn" });
   });
 
   it("getNetworkPending should return network pending state", () => {
