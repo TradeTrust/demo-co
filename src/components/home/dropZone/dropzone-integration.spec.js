@@ -11,5 +11,7 @@ const validateTextContent = async (t, component, texts) =>
   );
 
 test("Sample document is rendered correctly", async t => {
-  await validateTextContent(t, dropzone, ["Drag and drop your tradetrust file"]);
+  await validateTextContent(t, dropzone, [
+    "Drag and drop your tradetrust file"
+  ]);
 });
