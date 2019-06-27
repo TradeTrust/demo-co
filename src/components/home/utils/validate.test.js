@@ -1,9 +1,9 @@
-import sinon from "sinon";
 import * as tradeTrustScehma from "@govtechsg/tradetrust-schema";
 import {
   verifyDocumentNotRevoked,
   verifyDocumentHash,
-  getIntermediateHashes
+  getIntermediateHashes,
+  verifyDocumentIssued
 } from "./validate";
 
 import {
@@ -20,6 +20,8 @@ function whenThereIsOneEthereumAddressIssuer() {
   const document = new MakeCertUtil().addIssuer(ethereumAddresses[0]).finish();
   return { document, ethereumAddresses };
 }
+
+jest.mock("@govtechsg/tradetrust-schema");
 
 describe("validate document", () => {
   describe("getIntermediateHashes", () => {
@@ -39,15 +41,79 @@ describe("validate document", () => {
 
   describe("verifyDocumentNotRevoked", () => {
     it("should return true and put success action if all the store returns false for all hashes", async () => {
+      const mock = mockStore();
+      mock.isRevoked.returns(false);
+      const documentStores = [mock, mock, mock];
+
+      const dispatch = jest.fn();
+      const { document } = whenThereIsOneEthereumAddressIssuer();
+      let result = await verifyDocumentNotRevoked(dispatch, {
+        document,
+        documentStores
+      });
+
+      expect(result).toBe(true);
+    });
+
+    it("should return false and put fail action if all the store returns true for all hashes", async () => {
+      let mock = mockStore();
+      mock.isRevoked.returns(true);
+      const documentStores = [mock, mock, mock];
+      const dispatch = jest.fn();
+      const { document } = whenThereIsOneEthereumAddressIssuer();
+      let result = await verifyDocumentNotRevoked(dispatch, {
+        document,
+        documentStores
+      });
+      expect(result).toBe(false);
+    });
+  });
+
+  describe("verifyDocumentHash", () => {
+    const dispatch = jest.fn();
+    it("should return true when verification is successful", async () => {
+      tradeTrustScehma.verifySignature.mockReturnValue(true);
+      const { document } = whenThereIsOneEthereumAddressIssuer();
+      const res = await verifyDocumentHash(dispatch, { document });
+
+      expect(res).toBe(true);
+    });
+
+    it("should return false when document is not verified", async () => {
+      tradeTrustScehma.verifySignature.mockReturnValue(true);
+      const { document } = whenThereIsOneEthereumAddressIssuer();
+      const res = await verifyDocumentHash(dispatch, { document });
+
+      expect(res).toBe(true);
+    });
+  });
+
+  describe("verifyDocumentIssued", () => {
+    it("should return true and put success action if all the store returns true for all merkle root", async () => {
+      const mock = mockStore();
+      mock.isIssued.returns(true);
+      const documentStores = [mock, mock, mock];
+      const dispatch = jest.fn();
+      const { document } = whenThereIsOneEthereumAddressIssuer();
+      let result = await verifyDocumentIssued(dispatch, {
+        document,
+        documentStores
+      });
+
+      expect(result).toBe(true);
+    });
+
+    it("should return false and put fail action if all the store returns true for all hashes", async () => {
       try {
-        const documentStores = [mockStore(), mockStore(), mockStore()];
+        let mock = mockStore();
+        mock.isIssued.returns(false);
+        const documentStores = [mock, mock, mock];
         const dispatch = jest.fn();
         const { document } = whenThereIsOneEthereumAddressIssuer();
-        let result = await verifyDocumentNotRevoked(dispatch, {
+        let result = await verifyDocumentIssued(dispatch, {
           document,
           documentStores
         });
-
         expect(result).toBe(false);
       } catch (e) {
         expect(e).toEqual({
@@ -55,24 +121,6 @@ describe("validate document", () => {
             "Document has been revoked, revoked hash: 0xf7432b3219b2aa4122e289f44901830fa32f224ee9dfce28565677f1d279b2c7"
         });
       }
-    });
-  });
-
-  describe("verifyDocumentHash", () => {
-    let stub;
-    beforeEach(() => {
-      stub = sinon.stub(tradeTrustScehma, "verifySignature");
-    });
-    afterEach(() => {
-      stub.restore();
-    });
-    const dispatch = jest.fn();
-    it("should return true when verification is successful", async () => {
-      stub.returns(true);
-      const { document } = whenThereIsOneEthereumAddressIssuer();
-      const res = await verifyDocumentHash(dispatch, { document });
-
-      expect(res).toBe(false);
     });
   });
 });

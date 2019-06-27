@@ -13,10 +13,9 @@ export function updateDocument(payload) {
   };
 }
 
-export function verifyDocument(payload) {
+export function verifyDocument() {
   return {
-    type: docTypes.VERIFYING_DOCUMENT,
-    payload
+    type: docTypes.VERIFYING_DOCUMENT
   };
 }
 

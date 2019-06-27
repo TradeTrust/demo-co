@@ -6,13 +6,7 @@ export default function reducer(state = initialState, action) {
     case types.DOCUMENT_TEMPLATE_REGISTER:
       return {
         ...state,
-        templates: action.payload,
-        activeTemplateTab: 0
-      };
-    case types.DOCUMENT_TEMPLATE_SELECT_TAB:
-      return {
-        ...state,
-        activeTemplateTab: action.payload
+        templates: action.payload
       };
     default:
       return state;

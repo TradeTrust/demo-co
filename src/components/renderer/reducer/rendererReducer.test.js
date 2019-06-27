@@ -30,8 +30,7 @@ describe("reducers", () => {
             id: "transcript",
             label: "Transcript"
           }
-        ],
-        activeTemplateTab: 0
+        ]
       };
       expect(reducer(prevState, action)).toEqual(expectedState);
     });
@@ -58,8 +57,7 @@ describe("reducers", () => {
             label: "Transcript"
           },
           { id: "document", label: "Document" }
-        ],
-        activeTemplateTab: 1
+        ]
       };
       const expectedState = {
         foo: "bar",
@@ -72,8 +70,7 @@ describe("reducers", () => {
             id: "transcript",
             label: "Transcript"
           }
-        ],
-        activeTemplateTab: 0
+        ]
       };
       expect(reducer(prevState, action)).toEqual(expectedState);
     });

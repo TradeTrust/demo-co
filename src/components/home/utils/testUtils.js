@@ -15,12 +15,8 @@ export const rootHash =
 export const mockStore = () => {
   const stubbedFn = sinon.stub();
   return {
-    isRevoked: h => ({
-      call: () => stubbedFn(h)
-    }),
-    isIssued: h => ({
-      call: () => stubbedFn(h)
-    }),
+    isRevoked: stubbedFn,
+    isIssued: stubbedFn,
     stub: stubbedFn
   };
 };

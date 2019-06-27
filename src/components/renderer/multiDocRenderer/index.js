@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 
 import { getTemplates } from "components/renderer/actions";
@@ -6,7 +6,7 @@ import { Store } from "store";
 
 const MultiDocRenderer = ({ selectTemplateTab }) => {
   const [activeTab, setActiveTab] = useState(0);
-  const { state } = React.useContext(Store);
+  const { state } = useContext(Store);
   const templates = getTemplates(state);
   return (
     <ul className="nav nav-tabs container" id="myTab" role="tablist">

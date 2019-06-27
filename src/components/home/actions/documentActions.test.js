@@ -1,4 +1,10 @@
-import { resetDocumentState, getHashStatus } from "./documentActions";
+import {
+  resetDocumentState,
+  updateDocument,
+  verifyDocument,
+  verifyingDocumentRevocationSuccess,
+  getHashStatus
+} from "./documentActions";
 
 describe("actions", () => {
   it("resetDocumentState should generate correct action", () => {
@@ -6,6 +12,39 @@ describe("actions", () => {
       type: "RESET_DOCUMENT"
     };
     expect(resetDocumentState()).toEqual(expectedAction);
+  });
+
+  it("updateDocument should generate correct action", () => {
+    const payload = {
+      schema: "tradetrust/v1.0",
+      data: {
+        id: "71f10d54-d483-489b-b06f-fa2bed75ce16:string:certificate-id",
+        $template: { demo: "test" },
+        issuers: []
+      },
+      signature: {
+        targetHash: "12dsd3232"
+      }
+    };
+    const expectedAction = {
+      type: "UPDATE_DOCUMENT",
+      payload: payload
+    };
+    expect(updateDocument(payload)).toEqual(expectedAction);
+  });
+
+  it("verifyDocument should generate correct action", () => {
+    const expectedAction = {
+      type: "VERIFYING_DOCUMENT"
+    };
+    expect(verifyDocument()).toEqual(expectedAction);
+  });
+
+  it("verifyingDocumentRevocationSuccess should generate correct action", () => {
+    const expectedAction = {
+      type: "VERIFYING_DOCUMENT_REVOCATION_SUCCESS"
+    };
+    expect(verifyingDocumentRevocationSuccess()).toEqual(expectedAction);
   });
 });
 
