@@ -6,7 +6,7 @@ export const NETWORK_TYPES = {
   MOCK: "MOCK"
 };
 
-export const URL = "https://opencerts.io";
+export const URL = "https://tradetrust.io";
 
 // const GA_PRODUCTION_ID = "UA-130492260-1";
 // const GA_DEVELOPMENT_ID = "UA-130492260-2";
