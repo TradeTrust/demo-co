@@ -7,7 +7,7 @@ import {
 
 export const updateNetworkId = state => next => async action => {
   try {
-    next(action);
+    await next(action);
     const provider = await getSelectedProvider(next, true, state);
     const network = await fetchNetwork(provider);
     const networkIdVerbose = matchNetwork(network.chainId);
