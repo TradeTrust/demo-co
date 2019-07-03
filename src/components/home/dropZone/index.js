@@ -35,12 +35,12 @@ const DocumentDropZoneContainer = ({ history }) => {
     })();
   }, [dispatch]); //passing state here causing the problem of rendering of document
 
-  const handleCertificateChange = certificate => {
+  const handleDocumentChange = doc => {
     setFileError(false);
-    const wrappedDispatch = withMiddleware(certificate, dispatch)(
+    const wrappedDispatch = withMiddleware(doc, dispatch)(
       verifyDocument
     );
-    wrappedDispatch(updateDocument(certificate))
+    wrappedDispatch(updateDocument(doc))
       .then(verified => {
         if (verified) history.push("/renderer");
       })
@@ -55,7 +55,7 @@ const DocumentDropZoneContainer = ({ history }) => {
     <DocumentDropZone
       document={document}
       fileError={fileError}
-      handleCertificateChange={handleCertificateChange}
+      handleDocumentChange={handleDocumentChange}
       handleFileError={handleFileError}
       verifying={verifying}
       // issuerIdentityStatus={issuerIdentityStatus}
