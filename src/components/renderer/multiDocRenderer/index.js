@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 
-import { getTemplates } from "reducers/document";
+import { getTemplates } from "components/renderer/actions";
+import { Store } from "store";
 
-const MultiDocRenderer = ({ templates, selectTemplateTab }) => {
+const MultiDocRenderer = ({ selectTemplateTab }) => {
   const [activeTab, setActiveTab] = useState(0);
+  const { state } = useContext(Store);
+  const templates = getTemplates(state);
   return (
     <ul className="nav nav-tabs container" id="myTab" role="tablist">
       {templates && templates.length > 0
         ? templates.map((t, idx) => (
             <li key={idx} className="nav-item">
-              <a
+              <button
                 className={`nav-link ${idx === activeTab ? "active" : ""}`}
                 id={t.id}
                 onClick={() => {
@@ -23,7 +25,7 @@ const MultiDocRenderer = ({ templates, selectTemplateTab }) => {
                 aria-selected="true"
               >
                 {t.label}
-              </a>
+              </button>
             </li>
           ))
         : null}
@@ -31,14 +33,7 @@ const MultiDocRenderer = ({ templates, selectTemplateTab }) => {
   );
 };
 
-const mapStateToProps = store => ({
-  templates: getTemplates(store)
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(MultiDocRenderer);
+export default MultiDocRenderer;
 
 MultiDocRenderer.propTypes = {
   document: PropTypes.object,
