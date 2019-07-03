@@ -3,7 +3,11 @@ module.exports = {
   testPathIgnorePatterns: ["<rootDir>/node_modules/"],
   collectCoverage: false,
   coverageDirectory: "<rootDir>/.coverage/",
-  collectCoverageFrom: ["src/**/*.{js,jsx}", "scripts/**/*.{js,jsx}", "!src/**/*.spec.{js,jsx}"],
+  collectCoverageFrom: [
+    "src/**/*.{js,jsx}",
+    "scripts/**/*.{js,jsx}",
+    "!src/**/*.spec.{js,jsx}"
+  ],
   testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)test.[jt]s?(x)"],
   moduleDirectories: ["src", "node_modules"],
   moduleNameMapper: {
