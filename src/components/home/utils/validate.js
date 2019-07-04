@@ -25,7 +25,7 @@ import { docTypes } from "components/home/reducer/constants";
 import { getWeb3 } from "services/web3";
 const { info, error } = getLogger("util:validate");
 
-export async function loadCertificateContracts(payload, next) {
+export const loadCertificateContracts = payload => async next => {
   try {
     const data = getData(payload);
     info(`Loading document: ${data}`);
@@ -259,8 +259,7 @@ export const verifyDocument = state => next => async action => {
   try {
     next(action);
     next({ type: docTypes.VERIFYING_DOCUMENT });
-    const documentStores = await loadCertificateContracts(state, next);
-
+    const documentStores = await loadCertificateContracts(state)(next);
     const args = { documentStores, document: state };
 
     const verificationStatuses = await Promise.all([
