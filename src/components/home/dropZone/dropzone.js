@@ -77,11 +77,7 @@ const renderDropzoneContent = props => {
   );
 };
 
-const onFileDrop = (
-  acceptedFiles,
-  handleDocumentChange,
-  handleFileError
-) => {
+const onFileDrop = (acceptedFiles, handleDocumentChange, handleFileError) => {
   // eslint-disable-next-line no-undef
   const reader = new FileReader();
   if (reader.error) {

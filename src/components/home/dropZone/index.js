@@ -37,9 +37,7 @@ const DocumentDropZoneContainer = ({ history }) => {
 
   const handleDocumentChange = doc => {
     setFileError(false);
-    const wrappedDispatch = withMiddleware(doc, dispatch)(
-      verifyDocument
-    );
+    const wrappedDispatch = withMiddleware(doc, dispatch)(verifyDocument);
     wrappedDispatch(updateDocument(doc))
       .then(verified => {
         if (verified) history.push("/renderer");
