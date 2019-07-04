@@ -1,0 +1,359 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unverified view renders correctly when hash status is false, issue status is true and not revoked status is true 1`] = `
+<div
+  className="viewer-container invalid"
+  style={
+    Object {
+      "backgroundColor": "#fbeae9",
+      "borderRadius": 10,
+    }
+  }
+>
+  <span
+    className="message-container"
+  >
+    <img
+      alt="document invalid"
+      src="test-file-stub"
+    />
+    <span
+      className="invalid m-3"
+      style={
+        Object {
+          "fontSize": "1.5rem",
+        }
+      }
+    >
+      This document is not valid
+    </span>
+  </span>
+  <div
+    className="verifications"
+  >
+    <p
+      className="messages"
+    >
+      The document's contents are inaccurate
+    </p>
+  </div>
+  <a
+    href="/faq"
+    onClick={[Function]}
+  >
+    <div
+      className="unverified-btn"
+    >
+      What should I do?
+    </div>
+  </a>
+  <div
+    className="secondary-links"
+  >
+    <span>
+      <a
+        href="/ "
+        onClick={[Function]}
+      >
+        <button
+          className="text-link"
+          onClick={[Function]}
+        >
+          Try another
+        </button>
+      </a>
+    </span>
+    
+  </div>
+</div>
+`;
+
+exports[`unverified view renders correctly when hash status is true, issue status is false and not revoked status is true 1`] = `
+<div
+  className="viewer-container invalid"
+  style={
+    Object {
+      "backgroundColor": "#fbeae9",
+      "borderRadius": 10,
+    }
+  }
+>
+  <span
+    className="message-container"
+  >
+    <img
+      alt="document invalid"
+      src="test-file-stub"
+    />
+    <span
+      className="invalid m-3"
+      style={
+        Object {
+          "fontSize": "1.5rem",
+        }
+      }
+    >
+      This document is not valid
+    </span>
+  </span>
+  <div
+    className="verifications"
+  >
+    <p
+      className="messages"
+    >
+      The document records are not found
+    </p>
+  </div>
+  <a
+    href="/faq"
+    onClick={[Function]}
+  >
+    <div
+      className="unverified-btn"
+    >
+      What should I do?
+    </div>
+  </a>
+  <div
+    className="secondary-links"
+  >
+    <span>
+      <a
+        href="/ "
+        onClick={[Function]}
+      >
+        <button
+          className="text-link"
+          onClick={[Function]}
+        >
+          Try another
+        </button>
+      </a>
+    </span>
+    
+  </div>
+</div>
+`;
+
+exports[`unverified view renders correctly when hash status is true, issue status is true and not revoked status is false 1`] = `
+<div
+  className="viewer-container invalid"
+  style={
+    Object {
+      "backgroundColor": "#fbeae9",
+      "borderRadius": 10,
+    }
+  }
+>
+  <span
+    className="message-container"
+  >
+    <img
+      alt="document invalid"
+      src="test-file-stub"
+    />
+    <span
+      className="invalid m-3"
+      style={
+        Object {
+          "fontSize": "1.5rem",
+        }
+      }
+    >
+      This document is not valid
+    </span>
+  </span>
+  <div
+    className="verifications"
+  >
+    <p
+      className="messages"
+    >
+      The document has been revoked
+    </p>
+  </div>
+  <a
+    href="/faq"
+    onClick={[Function]}
+  >
+    <div
+      className="unverified-btn"
+    >
+      What should I do?
+    </div>
+  </a>
+  <div
+    className="secondary-links"
+  >
+    <span>
+      <a
+        href="/ "
+        onClick={[Function]}
+      >
+        <button
+          className="text-link"
+          onClick={[Function]}
+        >
+          Try another
+        </button>
+      </a>
+    </span>
+    
+  </div>
+</div>
+`;
+
+exports[`unverified view renders correctly when hash status, issued status and not revoked status is false 1`] = `
+<div
+  className="viewer-container invalid"
+  style={
+    Object {
+      "backgroundColor": "#fbeae9",
+      "borderRadius": 10,
+    }
+  }
+>
+  <span
+    className="message-container"
+  >
+    <img
+      alt="document invalid"
+      src="test-file-stub"
+    />
+    <span
+      className="invalid m-3"
+      style={
+        Object {
+          "fontSize": "1.5rem",
+        }
+      }
+    >
+      This document is not valid
+    </span>
+  </span>
+  <div
+    className="verifications"
+  >
+    <p
+      className="messages"
+    >
+      The document's contents are inaccurate
+    </p>
+    <p
+      className="messages"
+    >
+      The document records are not found
+    </p>
+    <p
+      className="messages"
+    >
+      The document has been revoked
+    </p>
+  </div>
+  <a
+    href="/faq"
+    onClick={[Function]}
+  >
+    <div
+      className="unverified-btn"
+    >
+      What should I do?
+    </div>
+  </a>
+  <div
+    className="secondary-links"
+  >
+    <span>
+      <a
+        href="/ "
+        onClick={[Function]}
+      >
+        <button
+          className="text-link"
+          onClick={[Function]}
+        >
+          Try another
+        </button>
+      </a>
+    </span>
+    
+  </div>
+</div>
+`;
+
+exports[`unverified view renders correctly when hash status, issued status and not revoked status is true 1`] = `
+<div
+  className="viewer-container warning"
+  style={
+    Object {
+      "backgroundColor": "#fbf6e9",
+      "borderRadius": 10,
+    }
+  }
+>
+  <span
+    className="message-container"
+  >
+    <img
+      alt="document warning"
+      src="test-file-stub"
+    />
+    <span
+      className="warning m-3"
+      style={
+        Object {
+          "fontSize": "1.5rem",
+        }
+      }
+    >
+      Document from unregistered institution
+    </span>
+  </span>
+  <div
+    className="verifications"
+  />
+  <a
+    href="/faq"
+    onClick={[Function]}
+  >
+    <div
+      className="unverified-btn"
+    >
+      What should I do?
+    </div>
+  </a>
+  <div
+    className="secondary-links"
+  >
+    <span>
+      <a
+        href="/ "
+        onClick={[Function]}
+      >
+        <button
+          className="text-link"
+          onClick={[Function]}
+        >
+          Try another
+        </button>
+      </a>
+    </span>
+    <span
+      onClick={[Function]}
+    >
+      <a
+        href="/viewer"
+        onClick={[Function]}
+      >
+        <button
+          className="text-link"
+          id="certificate-view-anyway"
+        >
+          View document anyway
+        </button>
+      </a>
+    </span>
+  </div>
+</div>
+`;

@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`verifying view renders correctly when error is true 1`] = `
+<div
+  className="text-center bg-light h-100 d-flex flex-column justify-content-center p-4 text-blue"
+  style={
+    Object {
+      "borderRadius": 10,
+    }
+  }
+>
+  <i
+    className="fas fa-spinner fa-pulse fa-3x"
+  />
+  <div
+    className="m-3"
+    style={
+      Object {
+        "fontSize": "1.5rem",
+      }
+    }
+  >
+    Verifying Document...
+  </div>
+</div>
+`;
+
+exports[`verifying view renders correctly when there is no warning or error 1`] = `
+<div
+  className="text-center bg-light h-100 d-flex flex-column justify-content-center p-4 text-blue"
+  style={
+    Object {
+      "borderRadius": 10,
+    }
+  }
+>
+  <i
+    className="fas fa-spinner fa-pulse fa-3x"
+  />
+  <div
+    className="m-3"
+    style={
+      Object {
+        "fontSize": "1.5rem",
+      }
+    }
+  >
+    Verifying Document...
+  </div>
+</div>
+`;
+
+exports[`verifying view renders correctly when warning true 1`] = `
+<div
+  className="text-center bg-light h-100 d-flex flex-column justify-content-center p-4 text-blue"
+  style={
+    Object {
+      "borderRadius": 10,
+    }
+  }
+>
+  <i
+    className="fas fa-spinner fa-pulse fa-3x"
+  />
+  <div
+    className="m-3"
+    style={
+      Object {
+        "fontSize": "1.5rem",
+      }
+    }
+  >
+    Verifying Document...
+  </div>
+</div>
+`;
