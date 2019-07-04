@@ -58,7 +58,7 @@ export const loadCertificateContracts = payload => async next => {
     });
     return null;
   }
-}
+};
 
 export async function verifyDocumentHash(next, { document }) {
   const verified = verifySignature(document);
