@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const View = ({ verificationStatus }) => {
+const VerifyingView = ({ verificationStatus }) => {
   const lastStatus =
     verificationStatus && verificationStatus[verificationStatus.length - 1];
 
@@ -38,8 +38,8 @@ const View = ({ verificationStatus }) => {
   );
 };
 
-export default View;
+export default VerifyingView;
 
-View.propTypes = {
+VerifyingView.propTypes = {
   verificationStatus: PropTypes.array
 };

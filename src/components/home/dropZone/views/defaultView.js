@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./viewerStyles.css";
 
-const View = ({ hover, accept, rootProps, inputProps }) => {
+const DefaultView = ({ hover, accept, rootProps, inputProps }) => {
   return (
     <div
       className={`viewer-container ${
@@ -46,9 +46,9 @@ const View = ({ hover, accept, rootProps, inputProps }) => {
     </div>
   );
 };
-export default View;
+export default DefaultView;
 
-View.propTypes = {
+DefaultView.propTypes = {
   hover: PropTypes.bool,
   accept: PropTypes.bool,
   rootProps: PropTypes.object,

@@ -5,7 +5,7 @@ import "./viewerStyles.css";
 import invalid from "static/images/dropzone/invalid.svg";
 import warning from "static/images/dropzone/warning.svg";
 
-const View = ({
+const UnVerifiedView = ({
   resetData,
   // issuerIdentityStatus,
   hashStatus,
@@ -106,7 +106,7 @@ const View = ({
   );
 };
 
-View.propTypes = {
+UnVerifiedView.propTypes = {
   handleRenderOverwrite: PropTypes.func,
   resetData: PropTypes.func,
   document: PropTypes.object,
@@ -117,4 +117,4 @@ View.propTypes = {
   notRevokedStatus: PropTypes.object
 };
 
-export default View;
+export default UnVerifiedView;
