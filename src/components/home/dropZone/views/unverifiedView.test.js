@@ -2,7 +2,7 @@ import React from "react";
 import UnVerifiedView from "./unverifiedView";
 import renderer from "react-test-renderer";
 import { MemoryRouter } from "react-router-dom";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 const hashStatus = { verified: true },
   issuedStatus = { verified: true },
@@ -86,17 +86,18 @@ it("unverified view renders correctly when hash status is true, issue status is 
   expect(tree).toMatchSnapshot();
 });
 
-describe('Unverified View component', () => {
-
-    it('Test click event', () => {
-      const resetData = jest.fn();
-      const view = shallow(<UnVerifiedView
+describe("Unverified View component", () => {
+  it("Test click event", () => {
+    const resetData = jest.fn();
+    const view = shallow(
+      <UnVerifiedView
         hashStatus={hashStatus}
         issuedStatus={issuedStatus}
         notRevokedStatus={notRevokedStatusFalse}
         resetData={resetData}
-      />);
-      view.find('button').simulate('click', {preventDefault: () => {}});
-      expect(resetData).toHaveBeenCalledTimes(1);
+      />
+    );
+    view.find("button").simulate("click", { preventDefault: () => {} });
+    expect(resetData).toHaveBeenCalledTimes(1);
   });
 });
