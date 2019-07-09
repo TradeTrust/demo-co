@@ -1,31 +1,19 @@
 import { Switch, Route } from "react-router-dom";
-import React from "react";
-import Loadable from "react-loadable";
+import React, { Suspense, lazy } from "react";
 
-const Home = Loadable({
-  loader: () =>
-    import(
-      /* webpackChunkName: "home" */ "./components/home/dropZone/index.js"
-    ),
-  loading: () => null,
-  modules: ["home"]
-});
-
-const IframeRenderer = Loadable({
-  loader: () =>
-    import(
-      /* webpackChunkName: "iframeRenderer" */ "./components/renderer/iframeRenderer/index.js"
-    ),
-  loading: () => null,
-  modules: ["iframeRenderer"]
-});
+const Home = lazy(() => import("./components/home/dropZone"));
+const IframeRenderer = lazy(() =>
+  import("./components/renderer/iframeRenderer")
+);
 
 function Main() {
   return (
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/renderer" component={IframeRenderer} />
-    </Switch>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/renderer" component={IframeRenderer} />
+      </Switch>
+    </Suspense>
   );
 }
 
