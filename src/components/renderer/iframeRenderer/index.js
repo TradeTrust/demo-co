@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import connectToChild from "penpal/lib/connectToChild";
 import { Store } from "store";
@@ -17,13 +17,13 @@ const IframeRenderer = props => {
   const { state, dispatch } = React.useContext(Store);
   const renderType = getRenderType(state);
   const doc = getDocument(state);
+  const iframeRef = useRef(null);
 
   useEffect(() => {
     if (!doc) {
       return props.history.push("/");
     }
-
-    let iframe = document.querySelector("iframe");
+    const iframe = iframeRef.current;
     connection = connectToChild({
       iframe,
       methods: {
@@ -64,6 +64,7 @@ const IframeRenderer = props => {
       )}
       <iframe
         title="Rendered Document"
+        ref={iframeRef}
         id="iframe"
         src={renderType ? renderType.url : ""}
         style={{ width: "100%", border: 0, height: "100%" }}
