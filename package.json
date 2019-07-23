@@ -32,7 +32,7 @@
     "ethereumjs-util": "^6.1.0",
     "ethers": "^4.0.33",
     "lodash": "^4.17.15",
-    "penpal": "^4.0.0",
+    "penpal": "^4.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
