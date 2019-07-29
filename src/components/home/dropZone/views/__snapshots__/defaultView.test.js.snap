@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default view renders correctly when hover and accept is true 1`] = `
+<div
+  className="viewer-container accept"
+  id="default-view"
+  style={
+    Object {
+      "borderRadius": 10,
+      "height": 300,
+    }
+  }
+>
+  <div
+    className="text-brand-dark"
+    style={
+      Object {
+        "fontSize": "1.375rem",
+        "fontWeight": 500,
+      }
+    }
+  >
+    Drag and drop your tradetrust file
+  </div>
+  <div
+    className="text-muted"
+  >
+    to view its contents
+  </div>
+  <div
+    className="text-muted row"
+  >
+    <div
+      className="col-2"
+    />
+    <div
+      className="col-3"
+    >
+      <hr />
+    </div>
+    <div
+      className="col-2"
+    >
+      or
+    </div>
+    <div
+      className="col-3"
+    >
+      <hr />
+    </div>
+  </div>
+  <div
+    className="text-muted row"
+  >
+    <div
+      className="mx-auto"
+    >
+      <button
+        className="pointer btn"
+        type="button"
+      >
+        Select File
+      </button>
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`default view renders correctly when hover is false and accept is true 1`] = `
+<div
+  className="viewer-container default"
+  id="default-view"
+  style={
+    Object {
+      "borderRadius": 10,
+      "height": 300,
+    }
+  }
+>
+  <div
+    className="text-brand-dark"
+    style={
+      Object {
+        "fontSize": "1.375rem",
+        "fontWeight": 500,
+      }
+    }
+  >
+    Drag and drop your tradetrust file
+  </div>
+  <div
+    className="text-muted"
+  >
+    to view its contents
+  </div>
+  <div
+    className="text-muted row"
+  >
+    <div
+      className="col-2"
+    />
+    <div
+      className="col-3"
+    >
+      <hr />
+    </div>
+    <div
+      className="col-2"
+    >
+      or
+    </div>
+    <div
+      className="col-3"
+    >
+      <hr />
+    </div>
+  </div>
+  <div
+    className="text-muted row"
+  >
+    <div
+      className="mx-auto"
+    >
+      <button
+        className="pointer btn"
+        type="button"
+      >
+        Select File
+      </button>
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`default view renders correctly when hover true and accept is false 1`] = `
+<div
+  className="viewer-container invalid"
+  id="default-view"
+  style={
+    Object {
+      "borderRadius": 10,
+      "height": 300,
+    }
+  }
+>
+  <div>
+    File cannot be read. Please check that you have a valid .tt file
+  </div>
+  <div
+    className="text-brand-dark"
+    style={
+      Object {
+        "fontSize": "1.375rem",
+        "fontWeight": 500,
+      }
+    }
+  >
+    Drag and drop your tradetrust file
+  </div>
+  <div
+    className="text-muted"
+  >
+    to view its contents
+  </div>
+  <div
+    className="text-muted row"
+  >
+    <div
+      className="col-2"
+    />
+    <div
+      className="col-3"
+    >
+      <hr />
+    </div>
+    <div
+      className="col-2"
+    >
+      or
+    </div>
+    <div
+      className="col-3"
+    >
+      <hr />
+    </div>
+  </div>
+  <div
+    className="text-muted row"
+  >
+    <div
+      className="mx-auto"
+    >
+      <button
+        className="pointer btn"
+        type="button"
+      >
+        Select File
+      </button>
+      <input />
+    </div>
+  </div>
+</div>
+`;
