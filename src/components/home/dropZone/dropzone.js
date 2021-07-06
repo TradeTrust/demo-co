@@ -25,7 +25,7 @@ const renderDropzoneContent = props => {
   } = props;
   // isDragReject is checking for mimetype (but we skipped it)
   // fileError is when the file is not in JSON format and threw when deserilising
-  // valid JSON files will be handled by handleCertificateChange()
+  // valid JSON files will be handled by handleDocumentChange()
   if (isDragReject || fileError) {
     return (
       <DefaultView
@@ -77,11 +77,7 @@ const renderDropzoneContent = props => {
   );
 };
 
-const onFileDrop = (
-  acceptedFiles,
-  handleCertificateChange,
-  handleFileError
-) => {
+const onFileDrop = (acceptedFiles, handleDocumentChange, handleFileError) => {
   // eslint-disable-next-line no-undef
   const reader = new FileReader();
   if (reader.error) {
@@ -90,7 +86,7 @@ const onFileDrop = (
   reader.onload = () => {
     try {
       const json = JSON.parse(reader.result);
-      handleCertificateChange(json);
+      handleDocumentChange(json);
     } catch (e) {
       handleFileError(e);
     }
@@ -99,8 +95,8 @@ const onFileDrop = (
     acceptedFiles.map(f => reader.readAsText(f));
 };
 
-const CertificateDropzone = ({
-  handleCertificateChange,
+const DocumentDropzone = ({
+  handleDocumentChange,
   resetData,
   handleFileError,
   handleRenderOverwrite,
@@ -115,9 +111,9 @@ const CertificateDropzone = ({
 }) => {
   const onDrop = useCallback(
     acceptedFiles => {
-      onFileDrop(acceptedFiles, handleCertificateChange, handleFileError);
+      onFileDrop(acceptedFiles, handleDocumentChange, handleFileError);
     },
-    [handleCertificateChange, handleFileError]
+    [handleDocumentChange, handleFileError]
   );
 
   const {
@@ -134,7 +130,7 @@ const CertificateDropzone = ({
       style={{ margin: "auto", top: "20%" }}
     >
       {renderDropzoneContent({
-        handleCertificateChange,
+        handleDocumentChange,
         resetData,
         handleRenderOverwrite,
         fileError,
@@ -154,13 +150,13 @@ const CertificateDropzone = ({
   );
 };
 
-CertificateDropzone.propTypes = {
+DocumentDropzone.propTypes = {
   document: PropTypes.object,
   resetData: PropTypes.func,
-  handleCertificateChange: PropTypes.func,
+  handleDocumentChange: PropTypes.func,
   handleFileError: PropTypes.func,
   handleRenderOverwrite: PropTypes.func,
-  updateCertificate: PropTypes.func,
+  updateDocument: PropTypes.func,
   fileError: PropTypes.bool,
   verifying: PropTypes.bool,
   issuerIdentityStatus: PropTypes.object,
@@ -187,4 +183,4 @@ renderDropzoneContent.propTypes = {
   getInputProps: PropTypes.func
 };
 
-export default CertificateDropzone;
+export default DocumentDropzone;
